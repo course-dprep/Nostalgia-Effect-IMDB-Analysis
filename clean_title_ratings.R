@@ -6,6 +6,7 @@ if (!"title.ratings" %in% names(datasets)) {
 }
 
 
+
 # Assign the dataset to a variable for easier manipulation
 ratings_df <- datasets$title.ratings
 
