@@ -35,27 +35,3 @@ for (file in files) {
   dataset_name <- sub(".tsv.gz$", "", file)  # Extract dataset name without extensions
   datasets[[dataset_name]] <- read_tsv(extracted_file, col_types = cols(.default = "c"))
 }
-
-# Clean and transform specific columns in the "title.basics" dataset
-datasets[["title.basics"]] <- datasets[["title.basics"]] %>%
-  mutate(
-    startYear = as.integer(ifelse(startYear == "\\N", NA, startYear)),  # Convert startYear to integer, replacing "\N" with NA
-    endYear = as.integer(ifelse(endYear == "\\N", NA, endYear)),  # Convert endYear to integer, replacing "\N" with NA
-    runtimeMinutes = as.integer(ifelse(runtimeMinutes == "\\N", NA, runtimeMinutes)),  # Convert runtimeMinutes to integer, replacing "\N" with NA
-    isAdult = as.integer(isAdult)  # Convert isAdult to integer (0 or 1)
-  )
-
-# Clean and transform specific columns in the "title.ratings" dataset
-datasets[["title.ratings"]] <- datasets[["title.ratings"]] %>%
-  mutate(
-    averageRating = as.numeric(ifelse(averageRating == "\\N", NA, averageRating)),  # Convert averageRating to numeric, replacing "\N" with NA
-    numVotes = as.integer(ifelse(numVotes == "\\N", NA, numVotes))  # Convert numVotes to integer, replacing "\N" with NA
-  )
-
-# Check the updated structure of the datasets after transformations
-str(datasets[["title.basics"]])
-str(datasets[["title.ratings"]]) 
-
-# Show the first few rows of each dataset
-head(datasets[["title.basics"]])
-head(datasets[["title.ratings"]])
