@@ -47,4 +47,4 @@ ratings_below_mean <- ratings_df %>%
   filter(numVotes < mean_numVotes)
 
 # Visualize the number of films with rating below the mean 
-cat("Number of films with numVotes below the mean:", nrow(ratings_below_mean), "\n")
+cat("Number of films with numVotes below the mean:", nrow(ratings_below_mean), "\n") 
