@@ -21,3 +21,7 @@ unique(title_basics$titleType) #to find which type are inside
 title_basics <- title_basics %>% filter(titleType %in% c("movie", "tvMovie")) # to clean it
 sum(is.na(title_basics$startYear))
 max(title_basics$startYear, na.rm = T)
+
+# we need to delete either original title or primary title column
+# we can remove the rows where the start year is NA
+# we can remove the movies where the start year is >=2025
