@@ -29,10 +29,20 @@ Release Year (IV) from the startYear field.
 Genre (Moderator Variable) from the genres field.   
 Country (Control Variable - U.S.), filtered to include only U.S. releases.   
 
+| Variable Name  | Description / Operationalization |
+|---------------|--------------------------------|
+| `averageRating` | Dependent Variable (DV). IMDb user rating on a 0–10 scale. |
+| `numVotes` | Number of votes submitted for the title (additional metric). |
+| `startYear` | Independent Variable (IV). Year the title was first released. |
+| `genres` | Moderator Variable. Primary genres listed for the title. |
+| `country` | Control Variable. Filtered for U.S. releases if specified. |
+
 Why IMDb?  
 IMDb provides a high-quality dataset for analyzing trends in movie ratings over time, the influence of genre, and country-specific variations. The structured dataset ensures a methodologically sound approach for studying how IMDb user ratings evolve with release year and genre differences.
 - How many observations are there in the final dataset? 
-- Include a table of variable description/operstionalisation. 
+- Include a table of variable description/operstionalisation.
+
+For this study, the current amount of observations is 743629 in the sample. 
 
 ## Method
 
@@ -50,12 +60,42 @@ IMDb provides a high-quality dataset for analyzing trends in movie ratings over 
 
 ## Dependencies 
 
-*Explain any tools or packages that need to be installed to run this workflow.*
-The workflow requires the installation of three R packages: readr for reading .tsv files efficiently, R.utils for extracting compressed .gz files, and dplyr for data manipulation. These packages ensure seamless downloading, extraction, and processing of the IMDb datasets. If any of these packages are not installed, they can be added using install.packages().
+To ensure smooth execution of this R project, confirm that you have installed the following packages. If any are missing, you can obtain them by running install.packages("packageName"). After installation, make them available in your current session by invoking the library() function.
+
+library (data.table) 
+library (R.utils)
+library (tidyverse)
+library (lubridate)
+library(readr)
+
 
 ## Running Instructions 
 
-*Provide step-by-step instructions that have to be followed to run this workflow.*
+Steps:
+
+Data Upload
+The first step is supposed to be uploading the targetted data sets from the website.
+
+Ensure Necessary Libraries
+The script will automatically install and load the required libraries (dplyr, readr, R.utils) if they are not already installed.
+
+Running the Script
+Simply run the provided script in your RStudio environment. Upon execution:
+
+It checks if the datasets already exist locally to avoid redundant downloads.
+
+If datasets are not present, it downloads and extracts them automatically.
+
+If the datasets are already downloaded and extracted, it will print a message indicating so (e.g., "File already extracted. Skipping extraction.").
+
+Dataset Loading
+Once completed, the datasets are loaded into the environment as:
+
+datasets$title.basics (contains general information about titles)
+
+datasets$title.ratings (contains rating information)
+
+A confirmation message "All datasets successfully downloaded and loaded." will appear upon successful execution.
 
 ## About 
 
@@ -68,4 +108,4 @@ Tetik, T., & Türkeli, Ö. (2023). POPULAR CINEMA AS NOSTALGIA INDUSTRY: REUNION
 
 Ulker-Demirel, E., Akyol, A. and Simsek, G.G. (2018), "Marketing and consumption of art products: the movie industry", Arts and the Market, Vol. 8 No. 1, pp. 80-98. https://doi.org/10.1108/AAM-06-2017-0011 
 
-The project is implemented by team < 4 > members: < Beatrice Ruggeri ID: 2146104, Dilay Alpaydin ID: 2154476, Eva Sozzi ID: 2151986, Maria Kim Capuani ID: 2063323, Zhaodi Ma 2124843>
+The project is implemented by team < 4 > members: < Beatrice Ruggeri ID: 2146104, Dilay Alpaydin ID: , Eva Sozzi ID: 2151986, Maria Kim Capuani ID: 2063323, Zhaodi Ma 2124843>
