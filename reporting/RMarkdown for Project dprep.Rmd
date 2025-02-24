@@ -39,8 +39,63 @@ title.basics.tsv.gz – Contains movie metadata, including:
 *Genre (Moderator Variable) from the genres field. 
 *Country (Control Variable - U.S.), filtered to include only U.S. releases. 
 
+| Variable Name  | Description / Operationalization |
+|---------------|--------------------------------|
+| `averageRating` | Dependent Variable (DV). IMDb user rating on a 0–10 scale. |
+| `numVotes` | Number of votes submitted for the title (additional metric). |
+| `startYear` | Independent Variable (IV). Year the title was first released. |
+| `genres` | Moderator Variable. Primary genres listed for the title. |
+| `country` | Control Variable. Filtered for U.S. releases if specified. |
+
 Why IMDb? 
-IMDb provides a high-quality dataset for analyzing trends in movie ratings over time, the influence of genre, and country-specific variations. The structured dataset ensures a methodologically sound approach for studying how IMDb user ratings evolve with release year and genre differences. 
+IMDb provides a high-quality dataset for analyzing trends in movie ratings over time, the influence of genre, and country-specific variations. The structured dataset ensures a methodologically sound approach for studying how IMDb user ratings evolve with release year and genre differences.
+
+For this study, the current amount of observations is 743629 in the sample.
+
+For data preparation, we conducted the project in following steps: 
+The first step in our workflow was to upload or retrieve the IMDb datasets—title.basics.tsv.gz and title.ratings.tsv.gz—directly from the public repository. We automated the process using R scripts that handle downloads and extraction, ensuring reproducibility and minimizing errors from manual handling. During this stage, we also selected the essential variables to address our research questions, focusing on startYear (hypothesized to capture nostalgic sentiment over time), averageRating (our primary dependent variable), numVotes (to gauge popularity), and genres (to investigate genre-specific moderating effects). We chose these variables based on the academic premise that nostalgia may bias audience perceptions of film quality and that certain genres might be more susceptible to this phenomenon.
+
+Next, we cleaned the raw data by removing missing values (e.g., titles with no valid release year or rating), filtering out future-dated entries, and converting relevant fields to appropriate data types (e.g., numeric). This step ensured that our dataset accurately represented actual releases and legitimate user feedback, thus strengthening the validity of our analysis. We then merged the cleaned tables on their unique identifier (tconst) to consolidate information on both film characteristics and user ratings in a single dataset. Additionally, we engineered new variables—for instance, an isReleased indicator to exclude unreleased titles and a career_category variable in related scripts—to capture theoretically meaningful distinctions in our data. By structuring the workflow around uploading, choosing variables, cleaning, and merging, we established a robust, code-driven pipeline that upholds academic rigor, supports our nostalgia-focused hypotheses, and provides clear, actionable insights for both scholarly and managerial audiences.
+
+## Dependencies 
+
+To ensure smooth execution of this R project, confirm that you have installed the following packages. If any are missing, you can obtain them by running install.packages("packageName"). After installation, make them available in your current session by invoking the library() function.
+
+library (data.table) 
+library (R.utils)
+library (tidyverse)
+library (lubridate)
+library(readr)
+
+## Running Instructions 
+
+Steps:
+
+Data Upload
+The first step is supposed to be uploading the targetted data sets from the website.
+
+Ensure Necessary Libraries
+The script will automatically install and load the required libraries (dplyr, readr, R.utils) if they are not already installed.
+
+Running the Script
+Simply run the provided script in your RStudio environment. Upon execution:
+
+It checks if the datasets already exist locally to avoid redundant downloads.
+
+If datasets are not present, it downloads and extracts them automatically.
+
+If the datasets are already downloaded and extracted, it will print a message indicating so (e.g., "File already extracted. Skipping extraction.").
+
+Dataset Loading
+Once completed, the datasets are loaded into the environment as:
+
+datasets$title.basics (contains general information about titles)
+
+datasets$title.ratings (contains rating information)
+
+A confirmation message "All datasets successfully downloaded and loaded." will appear upon successful execution.
+
+
 
 ## References
 •⁠  ⁠Tetik, T., & Türkeli, Ö. (2023). POPULAR CINEMA AS NOSTALGIA INDUSTRY: REUNIONS, REMAKES, AND REQUELS. Sinecine: Sinema Araştırmaları Dergisi, 14(1), 7-31. https://doi.org/10.32001/sinecine.1253910 
