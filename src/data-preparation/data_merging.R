@@ -11,7 +11,7 @@ library(readr)
 
 # Merge datasets on 'tconst'
 merged_df <- title_basics %>%
-  left_join(title_ratings, by = "tconst")
+  full_join(title_ratings, by = "tconst")
 
 # Identify potentially unreleased titles (no ratings available)
 merged_df <- merged_df %>%
@@ -32,3 +32,6 @@ cat(" Potential unreleased titles:", nrow(unreleased_titles), "\n")
 
 # Verify dataset visually in RStudio
 View(merged_df)
+
+cat("Total number of observations:", nrow(merged_df), "\n")
+
