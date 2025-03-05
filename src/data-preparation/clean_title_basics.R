@@ -1,34 +1,30 @@
-# set up
+# Initializing the script/setup:
 
-## install the dplyr package if not installed
-install.packages(c("dplyr", 'R.utils', "lubridate"))
+install.packages(c("dplyr", 'R.utils', "lubridate")) # this one can be deleted since is already in download part.
 library(data.table) 
 library(R.utils)
 library(tidyverse)
 library(lubridate)
 
 # Read the compressed TSV file directly --> transform value which are not correct as NA.
-title_basics <- fread("https://datasets.imdbws.com/title.basics.tsv.gz", sep = "\t", na.strings ="\\N")
+title_basics <- fread("https://datasets.imdbws.com/title.basics.tsv.gz", sep = "\t", na.strings ="\\N") # this one can be deleted since is already in download part.
 
-# Remove not needed column value --> endYear (as it is just for tv series) and original title (as we use primary title)
-title_basics[, endYear :=NULL]
-title_basics[, originalTitle :=NULL]
+# Transformation:
 
-# Mantain just Movie and TVmovie
-unique(title_basics$titleType) #to find which type are inside
-title_basics <- title_basics %>% filter(titleType %in% c("movie", "tvMovie")) # to clean it
+title_basics[, endYear :=NULL] # Remove unnecessary columns
+title_basics[, originalTitle :=NULL] # Remove unnecessary columns
 
-# Clean StartYear: make until current year and remove NA (108058)
+title_basics <- title_basics %>% filter(titleType %in% c("movie", "tvMovie")) # Keep only movies and TV movies
+
+
+cat("Rows before cleaning:", nrow(title_basics), "\n") # Display row count before filtering by year
 current_year <- year(Sys.Date()) #Find the current year
-title_basics <- title_basics %>% filter(startYear <= current_year) # to clean it
+title_basics <- title_basics %>% filter(startYear <= current_year) # Filter movies up to the current year
+cat("Rows after cleaning:", nrow(title_basics), "\n") # Display row count after filtering
+cat("Cleaning complete.\n")
 
-colSums(is.na(title_basics)) # to check how many NA are in each column --> there are still many NA but we are not interested in untime and genre
 
-sum(is.na(title_basics$startYear))
-max(title_basics$startYear, na.rm = T)
 
-# we need to delete either original title or primary title column
-# we can remove the rows where the start year is NA
-# we can remove the movies where the start year is >=2025
-
-View(title_basics)
+# If you want to save the cleaned dataset as a new file.
+# write_tsv(ratings_df_cleaned, file.path(tempdir(), "title.ratings_cleaned.tsv")) --> I feel the main idea of makefile is to not safe the file in the computer so I would do it
+# cat("Cleaning complete. Cleaned dataset saved as 'title.ratings_cleaned.tsv'.\n") 
