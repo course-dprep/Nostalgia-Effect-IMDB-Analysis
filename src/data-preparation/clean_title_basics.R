@@ -1,6 +1,5 @@
-# Initializing the script/setup:
+# Load required libraries and initialize the script and setup: 
 
-install.packages(c("dplyr", 'R.utils', "lubridate")) # this one can be deleted since is already in download part.
 library(data.table) 
 library(R.utils)
 library(tidyverse)
@@ -18,11 +17,8 @@ cat("Rows before cleaning:", nrow(title_basics), "\n") # Display row count befor
 current_year <- year(Sys.Date()) #Find the current year
 title_basics <- title_basics %>% filter(startYear <= current_year) # Filter movies up to the current year
 cat("Rows after cleaning:", nrow(title_basics), "\n") # Display row count after filtering
-cat("Cleaning complete.\n")
+cat("Cleaning title basics complete.\n") # Cleaning title basics complete
 
 
 
-# If you want to save the cleaned dataset as a new file.
-# write_tsv(ratings_df_cleaned, file.path(tempdir(), "title.ratings_cleaned.tsv")) --> I feel the main idea of makefile is to not safe the file in the computer so I would do it
-# cat("Cleaning complete. Cleaned dataset saved as 'title.ratings_cleaned.tsv'.\n") 
 

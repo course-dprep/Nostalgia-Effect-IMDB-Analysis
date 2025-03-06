@@ -4,6 +4,8 @@
 if (!require("dplyr")) install.packages("dplyr", dependencies = TRUE)
 if (!require("readr")) install.packages("readr", dependencies = TRUE)
 if (!require("R.utils")) install.packages("R.utils", dependencies = TRUE)
+if (!require("tidyverse")) install.packages("tidyverse", dependencies = TRUE)
+if (!require("lubridate")) install.packages("lubridate", dependencies = TRUE)
 
 library(data.table) # For fast data loading
 
