@@ -6,9 +6,6 @@ library(R.utils)
 library(tidyverse)
 library(lubridate)
 
-# Read the compressed TSV file directly --> transform value which are not correct as NA.
-title_basics <- fread("https://datasets.imdbws.com/title.basics.tsv.gz", sep = "\t", na.strings ="\\N") # this one can be deleted since is already in download part.
-
 # Transformation:
 
 title_basics[, endYear :=NULL] # Remove unnecessary columns
@@ -28,3 +25,4 @@ cat("Cleaning complete.\n")
 # If you want to save the cleaned dataset as a new file.
 # write_tsv(ratings_df_cleaned, file.path(tempdir(), "title.ratings_cleaned.tsv")) --> I feel the main idea of makefile is to not safe the file in the computer so I would do it
 # cat("Cleaning complete. Cleaned dataset saved as 'title.ratings_cleaned.tsv'.\n") 
+

@@ -1,36 +1,24 @@
-# Load necessary library
-library(dplyr)  # For data manipulation
+# Load required libraries
+library(dplyr)     # For data manipulation
+library(readr)     # For the write_tsv function
 
-if (!"title.ratings" %in% names(datasets)) {
-  stop("Dataset 'title.ratings' not found in the 'datasets' list. Make sure it was loaded correctly.")
+# Check if the 'title_ratings' dataset exists
+if (!exists("title_ratings")) {
+  stop("Dataset 'title_ratings' not found. Make sure it is loaded correctly.")
 }
 
+# Display the number of rows before cleaning
+cat("Number of rows before cleaning:", nrow(title_ratings), "\n")
 
-
-
-# Assign the dataset to a variable for easier manipulation
-ratings_df <- datasets$title.ratings
-
-# Convert necessary columns to numeric (since they are loaded as character by default)
-ratings_df <- ratings_df %>%
+# Convert the 'averageRating' and 'numVotes' columns to numeric and remove rows with NA values
+title_ratings <- title_ratings %>%
   mutate(
     averageRating = as.numeric(averageRating),
     numVotes = as.numeric(numVotes)
-  )
-
-# Remove rows where averageRating or numVotes is NA
-ratings_df_cleaned <- ratings_df %>%
+  ) %>%
   filter(!is.na(averageRating) & !is.na(numVotes))
 
-# Verify the cleaning process
-cat("Rows before cleaning:", nrow(ratings_df), "\n")
-cat("Rows after cleaning:", nrow(ratings_df_cleaned), "\n")
-
-# Store the cleaned dataset back in the list (optional)
-datasets$title.ratings <- ratings_df_cleaned
-
-# If you want to save the cleaned dataset as a new file
-write_tsv(ratings_df_cleaned, file.path(tempdir(), "title.ratings_cleaned.tsv"))
-
-cat("Cleaning complete. Cleaned dataset saved as 'title.ratings_cleaned.tsv'.\n")
+# Display the number of rows after cleaning
+cat("Number of rows after cleaning:", nrow(title_ratings), "\n")
+cat("Cleaning complete.\n")
 
