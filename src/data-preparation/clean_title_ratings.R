@@ -2,6 +2,10 @@
 
 library(dplyr)     # For data manipulation
 library(readr)     # For the write_tsv function
+library(data.table) # For fast data loading
+
+#Input:
+title_ratings <- fread("../../data/title_ratings.tsv.gz", sep = "\t", na.strings = "\\N")# Now load the datasets from the local files
 
 # Transformation: 
 
@@ -17,7 +21,8 @@ title_ratings <- title_ratings %>%
     numVotes = as.numeric(numVotes) # Convert 'numVotes' columns to numeric and remove rows with NA values
   ) %>%
   filter(!is.na(averageRating) & !is.na(numVotes))  
+# Save the cleaned data to a CSV file
+write_csv(title_ratings,file = "../../data/title_ratings_cleaned.csv")
 
-cat("Number of rows after cleaning:", nrow(title_ratings), "\n") # Display the number of rows after cleaning
+cat("Number of rows after cleaning title ratings:", nrow(title_ratings), "\n") # Display the number of rows after cleaning
 cat("Cleaning title ratings complete.\n") # Cleaning title ratings complete
-

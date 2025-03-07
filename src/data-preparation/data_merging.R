@@ -5,26 +5,27 @@ library(R.utils)
 library(lubridate)
 library(readr)
 
+#Input:
+title_basics <- read.csv("../../data/title_basics_cleaned.csv")
+title_ratings <- read.csv("../../data/title_ratings_cleaned.csv")
+
 # Transformation
 
 # Merge the datasets on 'tconst'
-merged_df <- title_basics %>%
+data_merging <- title_basics %>%
   full_join(title_ratings, by = "tconst")
 
 # Add a new column to identify whether a title is released based on the presence of ratings
-merged_df <- merged_df %>%
+data_merging <- data_merging %>%
   mutate(isReleased = ifelse(!is.na(averageRating), "Released", "Unreleased"))
 
-# Define the output file path in the specific folder
-output_path <- file.path("~", "team-project-spring-2025-team-4", "data", "datasets", "merged_titles.tsv")
+# Save the merged data to a CSV file
+write_csv(data_merging,file = "../../data/final_merged.csv")
 
-# Save the cleaned merged dataset to the specified folder
-write_tsv(merged_df, output_path)
-
-cat("Merged dataset saved as 'merged_titles.tsv' in '~/team-project-spring-2025-team-4/data/datasets'.\n")
-cat("Total titles merged:", nrow(merged_df), "\n")
+cat("Merged dataset saved as 'final_merged.csv'.\n")
+cat("Total titles merged:", nrow(data_merging), "\n")
 
 # View the merged dataset in RStudio
-View(merged_df)
-cat("Total number of observations:", nrow(merged_df), "\n")
+View(data_merging)
+cat("Total number of observationsa after merging:", nrow(data_merging), "\n")
 
