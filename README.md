@@ -56,7 +56,16 @@ For this study, the current amount of observations is 743629 in the sample.
 
 ## Repository Overview 
 
-**Include a tree diagram that illustrates the repository structure*
+- data
+- reporting
+- src
+  - analysis
+  - data-preparation
+- Rhistory
+- gitignore
+- Nostalgia-Effect-IMDB-Analysis.R
+- README.md
+- makefile
 
 ## Dependencies 
 
