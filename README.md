@@ -71,31 +71,21 @@ library(readr)
 
 ## Running Instructions 
 
-Steps:
-
-Data Upload
-The first step is supposed to be uploading the targetted data sets from the website.
-
-Ensure Necessary Libraries
-The script will automatically install and load the required libraries (dplyr, readr, R.utils) if they are not already installed.
-
-Running the Script
-Simply run the provided script in your RStudio environment. Upon execution:
-
-It checks if the datasets already exist locally to avoid redundant downloads.
-
-If datasets are not present, it downloads and extracts them automatically.
-
-If the datasets are already downloaded and extracted, it will print a message indicating so (e.g., "File already extracted. Skipping extraction.").
-
-Dataset Loading
-Once completed, the datasets are loaded into the environment as:
-
-datasets$title.basics (contains general information about titles)
-
-datasets$title.ratings (contains rating information)
-
-A confirmation message "All datasets successfully downloaded and loaded." will appear upon successful execution.
+To execute the analysis, follow these steps:
+1. Fork this repository to your own GitHub account.
+2. Clone the repository to your local machine using the command:
+   ```sh
+   git clone https://github.com/course-dprep/Nostalgia-Effect-IMDB-Analysis.git
+   ```
+3. Set your working directory to the **`src/data-preparation`** folder:
+   ```sh
+   cd Nostalgia-Effect-IMDB-Analysis/src/data-preparation
+   ```
+4. Execute the following command to automate the data processing pipeline:
+   ```sh
+   make
+   ```
+5. Once `make` has successfully executed all scripts, it will generate cleaned datasets inside the `data` folder.
 
 ## About 
 
