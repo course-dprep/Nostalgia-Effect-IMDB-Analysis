@@ -57,6 +57,19 @@ The first step in our workflow was to upload or retrieve the IMDb datasets—tit
 
 Next, we cleaned the raw data by removing missing values (e.g., titles with no valid release year or rating), filtering out future-dated entries, and converting relevant fields to appropriate data types (e.g., numeric). This step ensured that our dataset accurately represented actual releases and legitimate user feedback, thus strengthening the validity of our analysis. We then merged the cleaned tables on their unique identifier (tconst) to consolidate information on both film characteristics and user ratings in a single dataset. Additionally, we engineered new variables—for instance, an isReleased indicator to exclude unreleased titles and a career_category variable in related scripts—to capture theoretically meaningful distinctions in our data. By structuring the workflow around uploading, choosing variables, cleaning, and merging, we established a robust, code-driven pipeline that upholds academic rigor, supports our nostalgia-focused hypotheses, and provides clear, actionable insights for both scholarly and managerial audiences.
 
+## Repository Overview
+
+- data
+- reporting
+- src
+  - analysis
+  - data-preparation
+- Rhistory
+- gitignore
+- Nostalgia-Effect-IMDB-Analysis.R
+- README.md
+- makefile
+
 ## Dependencies 
 
 To ensure smooth execution of this R project, confirm that you have installed the following packages. If any are missing, you can obtain them by running install.packages("packageName"). After installation, make them available in your current session by invoking the library() function.
