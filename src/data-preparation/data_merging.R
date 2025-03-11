@@ -20,7 +20,7 @@ data_merging <- data_merging %>%
   mutate(isReleased = ifelse(!is.na(averageRating), "Released", "Unreleased"))
 
 # Save the merged data to a CSV file
-write_csv(data_merging,file = "../../data/final_merged.csv")
+write_csv(data_merging, file = here("data", "final_merged.csv"))
 
 cat("Merged dataset saved as 'final_merged.csv'.\n")
 cat("Total titles merged:", nrow(data_merging), "\n")

@@ -22,7 +22,7 @@ title_ratings <- title_ratings %>%
   ) %>%
   filter(!is.na(averageRating) & !is.na(numVotes))  
 # Save the cleaned data to a CSV file
-write_csv(title_ratings,file = "../../data/title_ratings_cleaned.csv")
+write_csv(title_ratings, file = here("data", "title_ratings_cleaned.csv"))
 
 cat("Number of rows after cleaning title ratings:", nrow(title_ratings), "\n") # Display the number of rows after cleaning
 cat("Cleaning title ratings complete.\n") # Cleaning title ratings complete
