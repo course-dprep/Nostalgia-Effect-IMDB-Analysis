@@ -3,6 +3,7 @@
 library(dplyr)     # For data manipulation
 library(readr)     # For the write_tsv function
 library(data.table) # For fast data loading
+library(here)
 
 #Input:
 title_ratings <- fread("../../data/title_ratings.tsv.gz", sep = "\t", na.strings = "\\N")# Now load the datasets from the local files

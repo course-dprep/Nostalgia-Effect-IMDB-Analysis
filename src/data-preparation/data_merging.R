@@ -4,10 +4,11 @@ library(data.table)
 library(R.utils)
 library(lubridate)
 library(readr)
+library(here)
 
 #Input:
-title_basics <- read.csv("../../data/title_basics_cleaned.csv")
-title_ratings <- read.csv("../../data/title_ratings_cleaned.csv")
+title_basics <- read.csv(here("data", "title_basics_cleaned.csv"))
+title_ratings <- read.csv(here("data", "title_ratings_cleaned.csv"))
 
 # Transformation
 

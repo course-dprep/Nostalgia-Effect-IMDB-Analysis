@@ -4,6 +4,7 @@ library(data.table)
 library(R.utils)
 library(tidyverse)
 library(lubridate)
+library(here)
 
 #Input:
 title_basics <- fread("../../data/title_basics.tsv.gz", sep = "\t", na.strings = "\\N")# Now load the datasets from the local files
