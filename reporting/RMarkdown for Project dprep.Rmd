@@ -78,7 +78,9 @@ library (data.table)
 library (R.utils)
 library (tidyverse)
 library (lubridate)
-library(readr)
+library (readr)
+library (here)
+library (ggplot2)
 
 ## Running Instructions 
 
