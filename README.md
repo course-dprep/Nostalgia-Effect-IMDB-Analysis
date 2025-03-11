@@ -70,11 +70,11 @@ ensures robustness. This approach provides a clear, interpretable assessment of 
 
 Nostalgia-Effect-IMDB-Analysis  
 │── data  
-    ├── datasets  
+              ├── datasets  
 │── reporting  
 │── src  
-    ├── analysis  
-    ├── data-preparation  
+            ├── analysis  
+            ├── data-preparation  
 │── .Rhistory  
 │── .gitignore  
 │── Nostalgia-Effect-IMDB-Analysis.R  
