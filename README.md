@@ -47,25 +47,40 @@ For this study, the current amount of observations is 743629 in the sample.
 ## Method
 
 - What methods do you use to answer your research question?
-- Provide justification for why it is the most suitable. 
+  To address our research question, we implemented a structured data analysis workflow consisting of data cleaning, merging, and statistical analysis, with a focus on linear regression to       quantify the impact of release year on IMDb ratings.
+- Provide justification for why it is the most suitable.
+  The study uses linear regression to quantify the impact of release year on IMDb ratings, with genre as a moderating factor. Descriptive analysis identifies trends, and statistical validation 
+ensures robustness. This approach provides a clear, interpretable assessment of nostalgia effects.
 
 ## Preview of Findings 
 - Describe the gist of your findings (save the details for the final paper!)
+  Our preliminary analysis suggests that IMDb movie ratings exhibit a nostalgia effect, where older films tend to receive higher average ratings compared to more recent releases. This trend       persists even after controlling for the number of votes and genre, indicating that audience perception of film quality is influenced by cultural memory and retrospective appreciation.
+  Additionally, genre plays a moderating role in this relationship. Some genres, such as classics, dramas, and sci-fi, show stronger nostalgia-driven rating inflation, whereas comedy and action   films tend to maintain a more stable rating distribution over time. These findings suggest that different genres age differently in the eyes of audiences, possibly due to shifting cultural      preferences and cinematic trends.
+
 - How are the findings/end product of the project deployed?
-- Explain the relevance of these findings/product. 
+  The insights from this study can be utilized in multiple ways:
+
+    - Industry Application: Streaming platforms and movie studios can adjust recommendation algorithms and marketing strategies based on nostalgia-driven biases.
+    - Content Strategy: Filmmakers can leverage nostalgia when producing remakes, reboots, or sequels to maximize audience engagement.
+    - Academic Contribution: This research contributes to media psychology and consumer behavior studies by offering empirical evidence of nostalgia’s impact on movie perception.
+- Explain the relevance of these findings/product.
+  Understanding the nostalgia effect in movie ratings is crucial for both industry professionals and researchers. It sheds light on how cultural memory shapes audience evaluation, helping media   companies refine their content curation, marketing efforts, and strategic decision-making when promoting older films or launching new projects with nostalgic appeal. 
 
 ## Repository Overview 
 
-- data
-- reporting
-- src
-  - analysis
-  - data-preparation
-- Rhistory
-- gitignore
-- Nostalgia-Effect-IMDB-Analysis.R
-- README.md
-- makefile
+Nostalgia-Effect-IMDB-Analysis  
+│── data  
+    ├── datasets  
+│── reporting  
+│── src  
+    ├── analysis  
+    ├── data-preparation  
+│── .Rhistory  
+│── .gitignore  
+│── Nostalgia-Effect-IMDB-Analysis.R  
+│── README.md  
+│── makefile  
+
 
 ## Dependencies 
 
