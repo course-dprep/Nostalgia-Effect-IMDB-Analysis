@@ -68,19 +68,20 @@ ensures robustness. This approach provides a clear, interpretable assessment of 
 
 ## Repository Overview 
 
-Nostalgia-Effect-IMDB-Analysis  
-│── data  
-              ├── datasets  
-│── reporting  
-│── src  
-            ├── analysis  
-            ├── data-preparation  
-│── .Rhistory  
-│── .gitignore  
-│── Nostalgia-Effect-IMDB-Analysis.R  
-│── README.md  
-│── makefile  
-
+```
+Nostalgia-Effect-IMDB-Analysis
+├── data
+│   ├── datasets
+├── reporting
+├── src
+│   ├── analysis
+│   ├── data-preparation
+├── .Rhistory
+├── .gitignore
+├── Nostalgia-Effect-IMDB-Analysis.R
+├── README.md
+├── makefile
+```
 
 ## Dependencies 
 
