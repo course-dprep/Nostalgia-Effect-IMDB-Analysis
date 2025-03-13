@@ -27,3 +27,4 @@ write_csv(title_ratings, file = here("data", "title_ratings_cleaned.csv"))
 
 cat("Number of rows after cleaning title ratings:", nrow(title_ratings), "\n") # Display the number of rows after cleaning
 cat("Cleaning title ratings complete.\n") # Cleaning title ratings complete
+

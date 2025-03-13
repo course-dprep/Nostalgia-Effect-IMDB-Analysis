@@ -24,3 +24,4 @@ cat("Rows after cleaning basic title:", nrow(title_basics), "\n") # Display row 
 write_csv(title_basics, file = here("data", "title_basics_cleaned.csv"))
 
 cat("Cleaning title basics complete.\n") # Cleaning title basics complete
+

@@ -1,21 +1,25 @@
-# Initializing the script/setup:
-
-
 # Install and load necessary libraries
-if (!require("dplyr")) install.packages("dplyr", dependencies = TRUE)
-if (!require("readr")) install.packages("readr", dependencies = TRUE)
-if (!require("R.utils")) install.packages("R.utils", dependencies = TRUE)
-if (!require("tidyverse")) install.packages("tidyverse", dependencies = TRUE)
-if (!require("lubridate")) install.packages("lubridate", dependencies = TRUE)
+if (!require("data.table")) install.packages("data.table", dependencies = TRUE)
 if (!require("here")) install.packages("here", dependencies = TRUE)
 
-library(data.table) # For fast data loading
+library(data.table)
+library(here)
 
-# Download the files into the local data folder
+# Ensure "data" folder exists
+dir.create(here("data"), showWarnings = FALSE)
+
+# Download IMDb datasets
 download.file("https://datasets.imdbws.com/title.basics.tsv.gz", 
-              destfile = here("data", "title_basics.tsv.gz")
-)
+              destfile = here("data", "title_basics.tsv.gz"))
 download.file("https://datasets.imdbws.com/title.ratings.tsv.gz", 
-              destfile = here("data", "title_ratings.tsv.gz")
-)
-cat("All dataset successfully downloaded and uploaded in data folder.\n") # Cleaning title basics complete
+              destfile = here("data", "title_ratings.tsv.gz"))
+
+cat("All datasets successfully downloaded to the data folder.\n")
+
+# Load datasets into R environment
+title_basics <- fread(here("data", "title_basics.tsv.gz"), sep = "\t", na.strings = "\\N", quote = "")
+title_ratings <- fread(here("data", "title_ratings.tsv.gz"), sep = "\t", na.strings = "\\N", quote = "")
+
+# Verify that data is loaded
+print(dim(title_basics))  # Should show number of rows and columns
+print(dim(title_ratings)) # Should show number of rows and columns
