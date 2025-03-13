@@ -3,6 +3,7 @@ library(dplyr)    # For data manipulation
 library(ggplot2)  # For visualization
 library(readr)    # For reading CSV files
 library(here)     # For project directory management
+library(car)
 
 # --- Load Cleaned Dataset ---
 merged_df_clean <- read_csv(here("data", "merged_df_clean.csv"))
@@ -52,3 +53,23 @@ ggplot(merged_df_clean, aes(x = startYear, y = averageRating)) +
        x = "Release Year", 
        y = "Average Rating")
 
+# --- Check for Linearity ---
+ggplot(data.frame(fitted = fitted(model1), residuals = resid(model1)), aes(x = fitted, y = residuals)) +
+  geom_point(alpha = 0.3) +
+  geom_smooth(method = "loess", color = "blue") +
+  labs(title = "Residuals vs. Fitted Values", x = "Fitted Values", y = "Residuals") +
+  theme_minimal()
+
+# --- Levene's Test for Homoschedasticity ---
+leveneTest(resid(model1) ~ as.factor(merged_df_clean$startYear))
+
+# --- Shapiro-Wilk Test to check normality of residuals ---
+ggplot(data.frame(residuals = resid(model1)), aes(sample = residuals)) +
+  stat_qq() +
+  stat_qq_line() +
+  labs(title = "QQ Plot of Residuals") +
+  theme_minimal()
+shapiro.test(resid(model1))
+
+# ---VIF test to check multicollinearity
+vif(model1)
