@@ -18,3 +18,4 @@ cat("Total rows after cleaning:", nrow(merged_df_clean), "\n")
 
 # View the cleaned dataset in RStudio
 View(merged_df_clean)
+
