@@ -7,16 +7,16 @@ library(dplyr)
 
 #  Part 2: Load Data
 
-merged_df <- read_csv("merged_df_clean.csv")
+data_merging <- read_csv("merged_df_clean.csv")
 
 # Convert 'startYear' to numeric
-merged_df <- merged_df %>%
+data_merging <- data_merging %>%
   mutate(startYear = as.numeric(startYear))
 
 #  Part 3: Relationship Between Release Year and Rating
 
 # 3.1 Average rating over release year
-yearly_ratings <- merged_df %>%
+yearly_ratings <- data_merging %>%
   group_by(startYear) %>%
   summarize(
     avg_rating = mean(averageRating, na.rm = TRUE),
@@ -37,7 +37,7 @@ ggplot(data = yearly_ratings, aes(x = startYear, y = avg_rating)) +
 #  Part 4: Genre-Specific Visualization
 
 # Some rows might have multiple genres, so separate them into multiple rows
-merged_df_genres <- merged_df %>%
+merged_df_genres <- data_merging %>%
   separate_rows(genres, sep = ",")
 
 # Computing average rating by year & genre
@@ -84,3 +84,4 @@ ggplot(yearly_ratings, aes(x = startYear, y = avg_rating)) +
 
 ggsave("plot_yearly_ratings.pdf")
 ggsave("plot_genre_ratings.pdf")
+
