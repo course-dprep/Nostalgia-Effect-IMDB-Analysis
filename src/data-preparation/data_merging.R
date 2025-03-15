@@ -1,8 +1,6 @@
 # Load required libraries and initialize the script and setup:
 library(dplyr) 
 library(data.table)
-library(R.utils)
-library(lubridate)
 library(readr)
 library(here)
 
@@ -13,20 +11,17 @@ title_ratings <- read.csv(here("data", "title_ratings_cleaned.csv"))
 # Transformation
 
 # Merge the datasets on 'tconst'
-data_merging <- title_basics %>%
-  full_join(title_ratings, by = "tconst")
+library(dplyr)
+library(data.table)
+library(readr)
+library(here)
 
-# Add a new column to identify whether a title is released based on the presence of ratings
-data_merging <- data_merging %>%
+title_basics <- read_csv(here("data", "title_basics_cleaned.csv"))
+title_ratings <- read_csv(here("data", "title_ratings_cleaned.csv"))
+
+data_merging <- title_basics %>%
+  full_join(title_ratings, by = "tconst") %>%
   mutate(isReleased = ifelse(!is.na(averageRating), "Released", "Unreleased"))
 
-# Save the merged data to a CSV file
-write_csv(data_merging, file = here("data", "final_merged.csv"))
-
-cat("Merged dataset saved as 'final_merged.csv'.\n")
-cat("Total titles merged:", nrow(data_merging), "\n")
-
-# View the merged dataset in RStudio
-View(data_merging)
-cat("Total number of observationsa after merging:", nrow(data_merging), "\n")
-
+write_csv(data_merging, here("data", "final_merged.csv"))
+cat("Merged dataset saved.\n")
