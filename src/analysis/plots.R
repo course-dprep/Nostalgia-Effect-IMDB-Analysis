@@ -6,8 +6,7 @@ library(ggplot2)
 library(dplyr)
 
 #  Part 2: Load Data
-
-data_merging <- read_csv("merged_df_clean.csv")
+data_merging <- read_csv(here("data","merged_df_clean.csv"))
 
 # Convert 'startYear' to numeric
 data_merging <- data_merging %>%
