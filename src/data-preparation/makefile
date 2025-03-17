@@ -1,29 +1,34 @@
-# 1) "all" is the default target that triggers the entire workflow.
-all: data/final_merged.csv
+DATA_DIR = data
+RAW_DATA = $(DATA_DIR)/final_merged.csv
+TITLE_BASICS_CLEANED = $(DATA_DIR)/title_basics_cleaned.csv
+TITLE_RATINGS_CLEANED = $(DATA_DIR)/title_ratings_cleaned.csv
+CLEAN_SCRIPT = clean.R
 
-# 2) Download raw data (assumes download-data.R writes some raw files to data/).
+# Default target
+all: $(RAW_DATA)
+
+# Download raw data
 .PHONY: download_data
 download_data:
 	@echo "Downloading raw data..."
 	Rscript download-data.R
 
-# 3) Clean title basics (produces data/title_basics_cleaned.csv).
-# The target now depends on the download_data step.
-data/title_basics_cleaned.csv: clean_title_basics.R | download_data
+# Clean title basics
+$(TITLE_BASICS_CLEANED): $(CLEAN_SCRIPT) | download_data
 	@echo "Cleaning title basics..."
-	Rscript clean_title_basics.R
+	Rscript $(CLEAN_SCRIPT)
 
-# 4) Clean title ratings (produces data/title_ratings_cleaned.csv).
-# The target now depends on the download_data step.
-data/title_ratings_cleaned.csv: clean_title_ratings.R | download_data
+# Clean title ratings
+$(TITLE_RATINGS_CLEANED): $(CLEAN_SCRIPT) | download_data
 	@echo "Cleaning title ratings..."
-	Rscript clean_title_ratings.R
+	Rscript $(CLEAN_SCRIPT)
 
-# 5) Merge the cleaned data into a final file (data/final_merged.csv).
-data/final_merged.csv: data_merging.R data/title_basics_cleaned.csv data/title_ratings_cleaned.csv
+# Merge cleaned data
+$(RAW_DATA): data_merging.R $(TITLE_BASICS_CLEANED) $(TITLE_RATINGS_CLEANED)
 	@echo "Merging data..."
 	Rscript data_merging.R
 
-# Optional: a 'clean' target to remove generated files.
+# Clean generated files
+.PHONY: clean
 clean:
-	rm -f ../../data/title_basics_cleaned.csv ../../data/title_ratings_cleaned.csv ../../data/final_merged.csv
+	rm -f $(TITLE_BASICS_CLEANED) $(TITLE_RATINGS_CLEANED) $(RAW_DATA)
