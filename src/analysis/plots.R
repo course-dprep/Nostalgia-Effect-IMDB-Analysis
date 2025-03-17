@@ -85,7 +85,7 @@ print(plot3)
 
 #  Save Plots
 
-ggsave("plot_yearly_ratings.pdf", plot = plot1)
-ggsave("plot_genre_ratings.pdf", plot = plot2)
-ggsave("plot_nostalgic_bias.pdf", plot = plot3)
+ggsave(plot = plot1, file = here("data", "plot_yearly_ratings.pdf"))
+ggsave(plot = plot2, file = here("data", "plot_genre_ratings.pdf"))
+ggsave(plot = plot3, file = here("data", "plot_nostalgic_bias.pdf"))
 
