@@ -1,9 +1,12 @@
 # Install and load necessary libraries
 if (!require("data.table")) install.packages("data.table", dependencies = TRUE)
 if (!require("here")) install.packages("here", dependencies = TRUE)
-
-library(data.table)
-library(here)
+if (!require("nortest")) install.packages("nortest", dependencies = TRUE)
+if (!require("R.utils")) install.packages("R.utils", dependencies = TRUE)
+if (!require("tidyverse")) install.packages("tidyverse", dependencies = TRUE)
+if (!require("lubridate")) install.packages("lubridate", dependencies = TRUE)
+if (!require("readr")) install.packages("readr", dependencies = TRUE)
+if (!require("ggplot2")) install.packages("ggplot2", dependencies = TRUE)
 
 # Ensure "data" folder exists
 dir.create(here("data"), showWarnings = FALSE)
