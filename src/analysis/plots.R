@@ -4,6 +4,7 @@
 library(tidyverse)  
 library(ggplot2)
 library(dplyr)
+library(here)
 
 #  Part 2: Load Data
 data_merging <- read_csv(here("data","merged_df_clean.csv"))
@@ -24,7 +25,7 @@ yearly_ratings <- data_merging %>%
   ungroup()
 
 # 3.2 Line plot of average rating over the years
-ggplot(data = yearly_ratings, aes(x = startYear, y = avg_rating)) +
+plot1 <- ggplot(data = yearly_ratings, aes(x = startYear, y = avg_rating)) +
   geom_line(color = "blue") + 
   labs(
     title = "Average IMDb Rating Over Release Year",
@@ -32,6 +33,7 @@ ggplot(data = yearly_ratings, aes(x = startYear, y = avg_rating)) +
     y = "Average Rating"
   ) +
   theme_minimal()
+print(plot1)
 
 #  Part 4: Genre-Specific Visualization
 
@@ -49,7 +51,7 @@ genre_ratings_by_year <- merged_df_genres %>%
   ungroup()
 
 # Plot: average rating by year, colored by genre
-ggplot(genre_ratings_by_year, aes(x = startYear, y = avg_rating, color = genres)) +
+plot2 <- ggplot(genre_ratings_by_year, aes(x = startYear, y = avg_rating, color = genres)) +
   geom_line() +
   labs(
     title = "Average IMDb Rating by Genre Over Release Year",
@@ -58,6 +60,7 @@ ggplot(genre_ratings_by_year, aes(x = startYear, y = avg_rating, color = genres)
     color = "Genre"
   ) +
   theme_minimal()
+print(plot2)
 
 #  Part 5: Highlighting Nostalgic Bias
 
@@ -65,7 +68,7 @@ ggplot(genre_ratings_by_year, aes(x = startYear, y = avg_rating, color = genres)
 # For example, focusing on a single genre or comparing the earliest years to the latest ones:
 # Below is a scatter that covers all years.
 
-ggplot(yearly_ratings, aes(x = startYear, y = avg_rating)) +
+plot3 <-ggplot(yearly_ratings, aes(x = startYear, y = avg_rating)) +
   geom_point(color = "red") +
   geom_smooth(method = "loess", se = FALSE) +
   labs(
@@ -74,6 +77,7 @@ ggplot(yearly_ratings, aes(x = startYear, y = avg_rating)) +
     y = "Average Rating"
   ) +
   theme_minimal()
+print(plot3)
 
 # Explanation:
 # - geom_point() shows individual yearly average ratings
@@ -81,6 +85,7 @@ ggplot(yearly_ratings, aes(x = startYear, y = avg_rating)) +
 
 #  Save Plots
 
-ggsave("plot_yearly_ratings.pdf")
-ggsave("plot_genre_ratings.pdf")
+ggsave("plot_yearly_ratings.pdf", plot = plot1)
+ggsave("plot_genre_ratings.pdf", plot = plot2)
+ggsave("plot_nostalgic_bias.pdf", plot = plot3)
 
