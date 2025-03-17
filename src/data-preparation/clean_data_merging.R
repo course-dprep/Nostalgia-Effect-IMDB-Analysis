@@ -32,6 +32,10 @@ upper_bound <- stats$Q3 + narrow_multiplier * stats$IQR
 cat("Narrowed Lower bound:", lower_bound, "\n")
 cat("Narrowed Upper bound:", upper_bound, "\n")
 
+## Filter out rows whose `averageRating` is outside the IQR-based bounds
+merged_df_clean <- merged_df_clean %>%
+  filter(averageRating >= lower_bound & averageRating <= upper_bound)
+
 # --- Process Genre Column: Keep Only the First Genre ---
 # Many movies have multiple genres (e.g., "Action,Adventure").
 # We extract only the first genre to simplify the analysis.
@@ -39,9 +43,28 @@ merged_df_clean <- merged_df_clean %>%
   mutate(genres = sapply(strsplit(as.character(genres), ","), `[`, 1)) %>%
   mutate(genres = as.factor(genres))  # Convert to factor
 
-## Filter out rows whose `averageRating` is outside the IQR-based bounds
+# Choosing the genres (if the numVotes >= Total average of numVotes)
+
+avg_votes_per_genre <- merged_df_clean %>%
+  group_by(genres) %>%
+  summarize(avg_numVotes = mean(numVotes, na.rm = TRUE))
+
+overall_avg_votes <- mean(merged_df_clean$numVotes, na.rm = TRUE) 
+
+# Identify genres with an average numVotes >= overall average
+genres_to_keep <- avg_votes_per_genre %>%
+  filter(avg_votes_per_genre >= overall_avg_votes) %>%
+  pull(genres)
+print(genres_to_keep)
+
+## We will keep these genres: "Action"  "Adventure" "Biography" "Crime"  "Horror" 
+
+# Filter the original dataset to keep only those genres
 merged_df_clean <- merged_df_clean %>%
-  filter(averageRating >= lower_bound & averageRating <= upper_bound)
+  filter(as.character(genres) %in% genres_to_keep)
+
+# Optionally, view the result
+View(merged_df_clean)
 
 # Save the cleaned data to a CSV file
 write_csv(merged_df_clean, file = here("data", "merged_df_clean.csv"))
