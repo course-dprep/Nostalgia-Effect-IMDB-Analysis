@@ -4,16 +4,10 @@ library(ggplot2)  # For visualization
 library(readr)    # For reading CSV files
 library(here)     # For project directory management
 library(car)
+library(nortest) # Load the nortest library for Kolmogorov-Smirnov test
 
 # --- Load Cleaned Dataset ---
 merged_df_clean <- read_csv(here("data", "merged_df_clean.csv"))
-
-# --- Process Genre Column: Keep Only the First Genre ---
-# Many movies have multiple genres (e.g., "Action,Adventure").
-# We extract only the first genre to simplify the analysis.
-merged_df_clean <- merged_df_clean %>%
-  mutate(genres = sapply(strsplit(as.character(genres), ","), `[`, 1)) %>%
-  mutate(genres = as.factor(genres))  # Convert to factor
 
 # --- Check Number of Unique Genres ---
 length(unique(merged_df_clean$genres))  # Should be manageable (<50)
@@ -56,7 +50,7 @@ ggplot(merged_df_clean, aes(x = startYear, y = averageRating)) +
 # --- Check for Linearity ---
 ggplot(data.frame(fitted = fitted(model1), residuals = resid(model1)), aes(x = fitted, y = residuals)) +
   geom_point(alpha = 0.3) +
-  geom_smooth(method = "loess", color = "blue") +
+  geom_smooth(method = "lm", se = TRUE, color = "blue") +
   labs(title = "Residuals vs. Fitted Values", x = "Fitted Values", y = "Residuals") +
   theme_minimal()
 
@@ -69,7 +63,12 @@ ggplot(data.frame(residuals = resid(model1)), aes(sample = residuals)) +
   stat_qq_line() +
   labs(title = "QQ Plot of Residuals") +
   theme_minimal()
-shapiro.test(resid(model1))
+lillie.test(resid(model1)) # Used Kolmogorov-Smirnov test since the sample size is larger than 5000
 
 # ---VIF test to check multicollinearity
-vif(model1)
+if (length(coef(model1)) > 2) {
+  print(vif(model1))
+} else {
+  cat("Model has fewer than 2 predictors; VIF is not applicable.\n")
+}
+
