@@ -26,43 +26,42 @@ Number of Votes from the numVotes field.
 
 title.basics.tsv.gz – Contains movie metadata, including:  
 Release Year (IV) from the startYear field.  
-Genre (Moderator Variable) from the genres field.   
-Country (Control Variable - U.S.), filtered to include only U.S. releases.   
-
-| Variable Name  | Description / Operationalization |
-|---------------|--------------------------------|
-| `averageRating` | Dependent Variable (DV). IMDb user rating on a 0–10 scale. |
-| `numVotes` | Number of votes submitted for the title (additional metric). |
-| `startYear` | Independent Variable (IV). Year the title was first released. |
-| `genres` | Moderator Variable. Primary genres listed for the title. |
-| `country` | Control Variable. Filtered for U.S. releases if specified. |
+Genre (Moderator Variable) from the genres field.     
 
 Why IMDb?  
-IMDb provides a high-quality dataset for analyzing trends in movie ratings over time, the influence of genre, and country-specific variations. The structured dataset ensures a methodologically sound approach for studying how IMDb user ratings evolve with release year and genre differences.
-- How many observations are there in the final dataset? 
-- Include a table of variable description/operstionalisation.
+IMDb provides a high-quality dataset for analyzing trends in movie ratings over time, looking at how the trend changed overtime, based on the influence of genre. The structured dataset ensures a methodologically sound approach for studying how IMDb user ratings evolve with release year and genre differences.
+Our main interest was to understand how users perception of films changed over time and check whether, over different periods (we considered from 1980s until today), one genre was more famous than others, in orther to be able to provide meaningful insights into how consumers behaviour related to films and genres changed overtime.
 
-For this study, the current amount of observations is 743629 in the sample. 
+- How many observations are there in the final dataset?
+  For this study, the current amount of observations is 743629 in the sample.
+  
+- Include a table of variable description/operstionalisation.
+| Variable Name  | Description / Operationalization |
+|---------------|--------------------------------|
+| `averageRating` | Dependent Variable (DV). IMDb user rating on a 0–10 scale. This variable is used to find out the average rating per user|
+| `numVotes` | Number of votes submitted for the title (additional metric). Ranges from 0-3200000|
+| `startYear` | Independent Variable (IV). Year the title was first released. Ranges from 1980 to 2025|
+| `genres` | Moderator Variable. Primary genres listed for the title by removing any possible combination of different genres and maintaining only the first one as the indicative|
 
 ## Method
 
 - What methods do you use to answer your research question?
-  To address our research question, we implemented a structured data analysis workflow consisting of data cleaning, merging, and statistical analysis, with a focus on linear regression to       quantify the impact of release year on IMDb ratings.
+  To address our research question, we implemented a structured data analysis workflow consisting of data cleaning, merging, and statistical analysis, with a focus on linear regression to quantify the impact of release year on IMDb ratings, because we were intrested in understanding whether specific films, were famous only during their release year, or whether the Nostalgia Effect kept them high over time.
+  We also wanted to see whether this effect changed with the effect of genre, by looking at whether genres impacted the voting, wether in specific period times some genres were more popular than others and whether this popularity was due by Nostalgia Effect, as well.
+  
 - Provide justification for why it is the most suitable.
-  The study uses linear regression to quantify the impact of release year on IMDb ratings, with genre as a moderating factor. Descriptive analysis identifies trends, and statistical validation 
-ensures robustness. This approach provides a clear, interpretable assessment of nostalgia effects.
+  The study uses linear regression to quantify the impact of release year on IMDb ratings, with genre as a moderating factor. Descriptive analysis identifies trends, and statistical validation ensures robustness. This approach provides a clear, interpretable assessment of nostalgia effects.
 
 ## Preview of Findings 
 - Describe the gist of your findings (save the details for the final paper!)
-  Our preliminary analysis suggests that IMDb movie ratings exhibit a nostalgia effect, where older films tend to receive higher average ratings compared to more recent releases. This trend       persists even after controlling for the number of votes and genre, indicating that audience perception of film quality is influenced by cultural memory and retrospective appreciation.
-  Additionally, genre plays a moderating role in this relationship. Some genres, such as classics, dramas, and sci-fi, show stronger nostalgia-driven rating inflation, whereas comedy and action   films tend to maintain a more stable rating distribution over time. These findings suggest that different genres age differently in the eyes of audiences, possibly due to shifting cultural      preferences and cinematic trends.
+  Our preliminary analysis suggests that IMDb movie ratings exhibit a nostalgia effect, where older films tend to receive higher average ratings compared to more recent releases. This trend persists even after controlling for the number of votes and genre, indicating that audience perception of film quality is influenced by cultural memory and retrospective appreciation.
+  Additionally, genre plays a moderating role in this relationship. Some genres, such as classics, dramas, and sci-fi, show stronger nostalgia-driven rating inflation, whereas comedy and action films tend to maintain a more stable rating distribution over time. These findings suggest that different genres age differently in the eyes of audiences, possibly due to shifting cultural preferences and cinematic trends.
 
 - How are the findings/end product of the project deployed?
   The insights from this study can be utilized in multiple ways:
-
     - Industry Application: Streaming platforms and movie studios can adjust recommendation algorithms and marketing strategies based on nostalgia-driven biases.
     - Content Strategy: Filmmakers can leverage nostalgia when producing remakes, reboots, or sequels to maximize audience engagement.
-    - Academic Contribution: This research contributes to media psychology and consumer behavior studies by offering empirical evidence of nostalgia’s impact on movie perception.
+    - Academic Contribution: This research contributes to media psychology and consumer behavior studies by offering empirical evidence of Nostalgia’s impact on movie perception.
 - Explain the relevance of these findings/product.
   Understanding the nostalgia effect in movie ratings is crucial for both industry professionals and researchers. It sheds light on how cultural memory shapes audience evaluation, helping media   companies refine their content curation, marketing efforts, and strategic decision-making when promoting older films or launching new projects with nostalgic appeal. 
 
@@ -102,9 +101,9 @@ To execute the analysis, follow these steps:
    ```sh
    git clone https://github.com/course-dprep/Nostalgia-Effect-IMDB-Analysis.git
    ```
-3. Set your working directory to the **`src/data-preparation`** folder:
+3. Set your working directory to the **`Nostalgia-Effect-IMDB-Analysis`** folder:
    ```sh
-   cd Nostalgia-Effect-IMDB-Analysis/src/data-preparation
+   cd Nostalgia-Effect-IMDB-Analysis
    ```
 4. Execute the following command to automate the data processing pipeline:
    ```sh
