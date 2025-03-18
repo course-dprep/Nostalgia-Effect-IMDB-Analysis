@@ -84,8 +84,7 @@ print(plot3)
 # - geom_smooth() draws a trend line, indicating whether older movies
 
 #  Save Plots
-
 ggsave(plot = plot1, file = here("data", "plot_yearly_ratings.pdf"))
 ggsave(plot = plot2, file = here("data", "plot_genre_ratings.pdf"))
 ggsave(plot = plot3, file = here("data", "plot_nostalgic_bias.pdf"))
-
+cat("Plots correctly saved.\n")

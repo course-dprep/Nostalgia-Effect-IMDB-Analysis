@@ -3,72 +3,77 @@ library(dplyr)    # For data manipulation
 library(ggplot2)  # For visualization
 library(readr)    # For reading CSV files
 library(here)     # For project directory management
-library(car)
-library(nortest) # Load the nortest library for Kolmogorov-Smirnov test
+library(car)      # For VIF calculation
+library(nortest)  # Load the nortest library for Kolmogorov-Smirnov test
 
-# --- Load Cleaned Dataset ---
+# Load Cleaned Dataset
 merged_df_clean <- read_csv(here("data", "merged_df_clean.csv"))
 
-# --- Check Number of Unique Genres ---
+# Check Number of Unique Genres
 length(unique(merged_df_clean$genres))  # Should be manageable (<50)
 
-# --- Regression 1: Effect of Release Year on IMDb Ratings ---
+# Regression 1: Effect of Release Year on IMDb Ratings
 # This model tests whether movie ratings change over time.
 model1 <- lm(averageRating ~ startYear, data = merged_df_clean)
 summary(model1)  # View regression results
 
-# --- Check Number of Unique Genres Again ---
+# Levene's Test for Homoschedasticity
+leveneTest(resid(model1) ~ as.factor(merged_df_clean$startYear))
+
+# Kolmogorov-Smirnov Test to check normality of residuals (Not Shapiro Wilk since the sample size is larger than 5000)
+lillie.test(resid(model1))
+
+# Check Number of Unique Genres Again
 length(unique(merged_df_clean$genres))  # Ensure consistency
 
-# --- Regression 2: Interaction Between Release Year and Genre ---
+# Regression 2: Interaction Between Release Year and Genre
 # This model examines whether the relationship between release year and IMDb ratings 
 # differs based on the movie genre.
 model2 <- lm(averageRating ~ startYear * genres, data = merged_df_clean)
 summary(model2)  # View regression results
 print(model2)    # Print model details
 
-# --- ANOVA: Testing Whether Genres Have a Significant Effect on Ratings ---
+# VIF Test for Multicollinearity
+vif(model2)  # Variance Inflation Factor test
+
+# Levene's Test for Homoschedasticity
+leveneTest(resid(model2) ~ genres, data = merged_df_clean)
+
+# Kolmogorov-Smirnov test
+by(resid(model2), merged_df_clean$genres, lillie.test)
+
+# ANOVA: Testing Whether Genres Have a Significant Effect on Ratings
 # This test checks if there are significant differences in IMDb ratings across genres.
 anova_model <- aov(averageRating ~ genres, data = merged_df_clean)
 summary(anova_model)  # View ANOVA results
 print(anova_model)    # Print model details
 
-# --- Regression 3: Controlling for the Number of Votes (Bias Check) ---
+# Levene's Test for Homoschedasticity
+levene_test <- leveneTest(resid(anova_model) ~ genres, data = merged_df_clean)
+print(levene_test)
+
+# Regression 3: Controlling for the Number of Votes (Bias Check)
 # This model controls for the number of votes to check if nostalgia bias exists.
 model3 <- lm(averageRating ~ startYear + numVotes, data = merged_df_clean)
 summary(model3)  # View regression results
 
-# --- Visualization: IMDb Ratings Over Time ---
+# VIF Test for Multicollinearity
+vif(model3)  # Variance Inflation Factor test
+
+# Levene's Test for Homoschedasticity
+leveneTest(resid(model3) ~ as.factor(merged_df_clean$startYear))
+
+# Kolmogorov-Smirnov test
+lillie.test(resid(model3)) # Used Kolmogorov-Smirnov test since the sample size is larger than 5000
+
+# Visualization: IMDb Ratings Over Time
 # This scatter plot visualizes the relationship between release year and average ratings.
-ggplot(merged_df_clean, aes(x = startYear, y = averageRating)) + 
+plot1 <- ggplot(merged_df_clean, aes(x = startYear, y = averageRating)) + 
   geom_point(alpha = 0.3) +  # Semi-transparent points
   geom_smooth(method = "lm", se = FALSE, color = "blue") +  # Linear trendline
   labs(title = "IMDb Ratings vs. Release Year", 
        x = "Release Year", 
        y = "Average Rating")
 
-# --- Check for Linearity ---
-ggplot(data.frame(fitted = fitted(model1), residuals = resid(model1)), aes(x = fitted, y = residuals)) +
-  geom_point(alpha = 0.3) +
-  geom_smooth(method = "lm", se = TRUE, color = "blue") +
-  labs(title = "Residuals vs. Fitted Values", x = "Fitted Values", y = "Residuals") +
-  theme_minimal()
-
-# --- Levene's Test for Homoschedasticity ---
-leveneTest(resid(model1) ~ as.factor(merged_df_clean$startYear))
-
-# --- Shapiro-Wilk Test to check normality of residuals ---
-ggplot(data.frame(residuals = resid(model1)), aes(sample = residuals)) +
-  stat_qq() +
-  stat_qq_line() +
-  labs(title = "QQ Plot of Residuals") +
-  theme_minimal()
-lillie.test(resid(model1)) # Used Kolmogorov-Smirnov test since the sample size is larger than 5000
-
-# ---VIF test to check multicollinearity
-if (length(coef(model1)) > 2) {
-  print(vif(model1))
-} else {
-  cat("Model has fewer than 2 predictors; VIF is not applicable.\n")
-}
-
+ggsave(plot = plot1, file = here("data", "imdb_ratings_vs_release_year.pdf"))
+cat("Analysis test done.\n")

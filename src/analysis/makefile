@@ -1,25 +1,30 @@
-# Define the data directory and the required merged data file.
 DATA_DIR = ../../data
-MERGED_DATA = $(DATA_DIR)/merged_df_clean.csv
 
-# Default target: run the analysis script.
-all: analysis
+# Default target: all four PDF files
+all: \
+	$(DATA_DIR)/imdb_ratings_vs_release_year.pdf \
+	$(DATA_DIR)/plot_yearly_ratings.pdf \
+	$(DATA_DIR)/plot_genre_ratings.pdf \
+	$(DATA_DIR)/plot_nostalgic_bias.pdf
 
-# Run the analysis script.
-analysis: $(MERGED_DATA)
+# 1) Run the analysis script to produce imdb_ratings_vs_release_year.pdf
+$(DATA_DIR)/imdb_ratings_vs_release_year.pdf: analysis.R $(DATA_DIR)/merged_df_clean.csv
 	@echo "Running analysis..."
 	Rscript analysis.R
 
-# Dependency: if the merged data is not found, notify the user.
-$(MERGED_DATA):
-	@echo "Error: Merged data not found at $(MERGED_DATA)."
-	@echo "Please run the data-preparation Makefile first."
-	@exit 1
+# 2) Run the plots script to produce the other three PDFs (plot_yearly_ratings.pdf, plot_genre_ratings.pdf, plot_nostalgic_bias.pdf)
+$(DATA_DIR)/plot_yearly_ratings.pdf $(DATA_DIR)/plot_genre_ratings.pdf $(DATA_DIR)/plot_nostalgic_bias.pdf: \
+	plots.R \
+	$(DATA_DIR)/merged_df_clean.csv \
+	$(DATA_DIR)/imdb_ratings_vs_release_year.pdf
+	@echo "Generating plots..."
+	Rscript plots.R
 
-.PHONY: all analysis clean
-
-# Clean up any generated files (if applicable).
+# Optional: Clean up generated PDF files
+.PHONY: clean
 clean:
-	@echo "Cleaning analysis outputs..."
-	# Remove any generated files, e.g., plots (if saved)
-	rm -f plot_yearly_ratings.pdf plot_genre_ratings.pdf plot_nostalgic_bias.pdf
+	rm -f \
+	$(DATA_DIR)/imdb_ratings_vs_release_year.pdf \
+	$(DATA_DIR)/plot_yearly_ratings.pdf \
+	$(DATA_DIR)/plot_genre_ratings.pdf \
+	$(DATA_DIR)/plot_nostalgic_bias.pdf
