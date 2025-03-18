@@ -1,3 +1,6 @@
+# Set CRAN mirror
+options(repos = c(CRAN = "https://cloud.r-project.org"))
+
 # Install and load necessary libraries
 if (!require("data.table")) install.packages("data.table", dependencies = TRUE)
 if (!require("here")) install.packages("here", dependencies = TRUE)
