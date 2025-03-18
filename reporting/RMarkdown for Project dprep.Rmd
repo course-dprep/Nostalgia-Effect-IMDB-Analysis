@@ -70,36 +70,6 @@ Next, we cleaned the raw data by removing missing values (e.g., titles with no v
 - README.md
 - makefile
 
-## Dependencies 
-
-To ensure smooth execution of this R project, confirm that you have installed the following packages. If any are missing, you can obtain them by running install.packages("packageName"). After installation, make them available in your current session by invoking the library() function.
-
-library (data.table) 
-library (R.utils)
-library (tidyverse)
-library (lubridate)
-library (readr)
-library (here)
-library (ggplot2)
-
-## Running Instructions 
-
-Steps:
-
-Data Upload
-The first step is supposed to be uploading the targetted data sets from the website.
-
-Ensure Necessary Libraries
-The script will automatically install and load the required libraries (dplyr, readr, R.utils) if they are not already installed.
-
-Running the Script
-Simply run the provided script in your RStudio environment. Upon execution:
-
-It checks if the datasets already exist locally to avoid redundant downloads.
-
-If datasets are not present, it downloads and extracts them automatically.
-
-If the datasets are already downloaded and extracted, it will print a message indicating so (e.g., "File already extracted. Skipping extraction.").
 
 Dataset Loading
 Once completed, the datasets are loaded into the environment as:
