@@ -4,6 +4,9 @@ library(dplyr)
 library(readr)
 library(here)
 
+#Input:
+data_merging <- read_csv(here("data", "final_merged.csv"))
+
 # Print the total rows before cleaning
 cat("Total rows before cleaning:", nrow(data_merging), "\n")
 
@@ -37,8 +40,6 @@ merged_df_clean <- merged_df_clean %>%
   filter(averageRating >= lower_bound & averageRating <= upper_bound)
 
 # --- Process Genre Column: Keep Only the First Genre ---
-# Many movies have multiple genres (e.g., "Action,Adventure").
-# We extract only the first genre to simplify the analysis.
 merged_df_clean <- merged_df_clean %>%
   mutate(genres = sapply(strsplit(as.character(genres), ","), `[`, 1)) %>%
   mutate(genres = as.factor(genres))  # Convert to factor
@@ -53,7 +54,7 @@ overall_avg_votes <- mean(merged_df_clean$numVotes, na.rm = TRUE)
 
 # Identify genres with an average numVotes >= overall average
 genres_to_keep <- avg_votes_per_genre %>%
-  filter(avg_votes_per_genre >= overall_avg_votes) %>%
+  filter(avg_numVotes >= overall_avg_votes) %>%
   pull(genres)
 print(genres_to_keep)
 
@@ -63,15 +64,9 @@ print(genres_to_keep)
 merged_df_clean <- merged_df_clean %>%
   filter(as.character(genres) %in% genres_to_keep)
 
-# Optionally, view the result
-View(merged_df_clean)
-
 # Save the cleaned data to a CSV file
 write_csv(merged_df_clean, file = here("data", "merged_df_clean.csv"))
 
 cat("Cleaned dataset saved as 'merged_df_clean.csv'.\n")
 cat("Total rows after cleaning:", nrow(merged_df_clean), "\n")
-
-# View the cleaned dataset in RStudio
-View(merged_df_clean)
 
