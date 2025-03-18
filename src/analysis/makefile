@@ -1,5 +1,9 @@
 DATA_DIR = ../../data
 
+# Rule to build merged_df_clean.csv by calling the data-preparation makefile
+$(DATA_DIR)/merged_df_clean.csv:
+	$(MAKE) -C ../data-preparation
+	
 # Default target: all four PDF files
 all: \
 	$(DATA_DIR)/imdb_ratings_vs_release_year.pdf \
