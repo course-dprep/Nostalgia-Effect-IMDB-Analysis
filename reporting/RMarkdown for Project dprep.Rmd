@@ -71,7 +71,7 @@ Next, we cleaned the raw data by removing missing values (e.g., titles with no v
 - makefile
 
 
-Dataset Loading
+›Dataset Loading
 Once completed, the datasets are loaded into the environment as:
 
 datasets$title.basics (contains general information about titles)
@@ -84,8 +84,10 @@ A confirmation message "All datasets successfully downloaded and loaded." will a
 
 
 
+
 ## Results
 
+››
 
 
 ## References
