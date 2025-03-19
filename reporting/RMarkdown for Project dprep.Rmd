@@ -82,7 +82,13 @@ A confirmation message "All datasets successfully downloaded and loaded." will a
 
 ## Conclusion
 
+This study explored the impact of release year and genre on IMDb user ratings, providing insights into how nostalgia shapes audience perception over time. The findings indicate a positive correlation between release year and user ratings, suggesting that older films may benefit from nostalgic bias. The analysis of IMDb ratings over time reveals that movies from earlier decades, particularly the 1980s and 1990s, tend to have higher average ratings compared to more recent films. This trend aligns with the concept that nostalgia influences audience perception, potentially leading to selective survival bias, where only well-regarded films are remembered and rated positively over time.
 
+The genre-based analysis demonstrates variation in nostalgic impact across different movie types. Certain genres, such as biography, crime, and adventure, show more stable or increasing rating trends over time, suggesting they may be more resilient to nostalgic bias. Conversely, horror and action movies display more variability, with some decline in ratings for newer releases. This indicates that audience preferences within these genres might evolve faster, making them less influenced by nostalgia. These findings suggest that the extent of nostalgic bias may depend on genre-specific audience expectations and cultural shifts in how different movie types are perceived over time.
+
+From a managerial standpoint, these insights offer actionable takeaways for movie studios, streaming platforms, and marketers. Given the positive nostalgic impact on older films, studios can strategically re-release or remake classic movies that maintain strong audience ratings. Streaming platforms can adjust recommendation algorithms to account for nostalgia-driven preferences, highlighting older films with historically high ratings to improve user engagement. Additionally, studios may prioritize certain genres based on their observed resilience to rating declines, focusing on those that maintain high reception over time.
+
+Overall, this study highlights how nostalgia shapes IMDb user ratings, influencing both audience perception and film industry strategies. By recognizing these patterns, industry professionals can leverage nostalgia-driven engagement, while researchers can further explore the psychological mechanisms underlying nostalgic biases in entertainment consumption.
 
 
 ## Results
