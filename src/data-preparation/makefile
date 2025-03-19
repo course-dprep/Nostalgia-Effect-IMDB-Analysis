@@ -3,24 +3,15 @@ DATA_DIR = ../../data
 # Default target: produce the final merged, cleaned data
 all: $(DATA_DIR)/merged_df_clean.csv
 
-# Phony target for running the entire data-preparation pipeline
-.PHONY: data-preparation
-data-preparation: all
-
 # Download raw data (assumes download-data.R writes some raw files to data/)
 .PHONY: download_data
 download_data:
 	@echo "Downloading raw data..."
 	Rscript download-data.R
 
-# Clean title ratings (produces data/title_ratings_cleaned.csv)
-$(DATA_DIR)/title_ratings_cleaned.csv: clean.R | download_data
-	@echo "Cleaning title ratings..."
-	Rscript clean.R
-
-# Clean title basics (produces data/title_basics_cleaned.csv)
-$(DATA_DIR)/title_basics_cleaned.csv: clean.R | download_data
-	@echo "Cleaning title basics..."
+# Cleaning title ratings and basics
+$(DATA_DIR)/title_basics_cleaned.csv $(DATA_DIR)/title_ratings_cleaned.csv: clean.R | download_data
+	@echo "Cleaning title basics and title ratings..."
 	Rscript clean.R
 	
 # Merge cleaned data into a final file (data/final_merged.csv)
