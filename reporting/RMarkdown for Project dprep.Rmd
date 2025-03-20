@@ -1,5 +1,5 @@
 ---
-title: "Markdown for Dprep"
+title: "Dprep Final Report - The Nostalgia Effect: How Release Year and Genre Shape IMDb Movie Ratings Over Time"
 author: "Team 4"
 date: "`r Sys.Date()`"
 output:
@@ -7,10 +7,15 @@ output:
     latex_engine: xelatex
     toc: true
     number_sections: true
+  word_document:
+    toc: true
+  html_document:
+    toc: true
+    df_print: paged
 ---
 # The Nostalgia Effect: How Release Year and Genre Shape IMDb Movie Ratings Over Time
 
-https://github.com/course-dprep/team-project-spring-2025-team-4
+Link to our GitHub page to have a broader overview of the whole project: https://github.com/course-dprep/team-project-spring-2025-team-4
 
 ## Introduction 
 This project aims to explore how nostalgia influences IMDb movie ratings by analyzing the relationship between a film’s release year and audience perception, with genre as a moderating factor. As nostalgia increasingly shapes consumer preferences, understanding its impact on movie reception can reveal biases in ratings and cultural memory effects. This study provides insights into how audiences evaluate films over time, helping industry professionals leverage nostalgia in content creation, marketing, and distribution strategies.
@@ -48,42 +53,75 @@ title.basics.tsv.gz – Contains movie metadata, including:
 | `country` | Control Variable. Filtered for U.S. releases if specified. |
 
 Why IMDb? 
-IMDb provides a high-quality dataset for analyzing trends in movie ratings over time, the influence of genre, and country-specific variations. The structured dataset ensures a methodologically sound approach for studying how IMDb user ratings evolve with release year and genre differences.
+​The Internet Movie Database (IMDb) is widely regarded as a valuable resource for both general users and researchers interested in film and television.  
+The platform offers extensive information on millions of films and television programs including details about cast and crew, plot summaries, and production notes. Moreover, it allows users to rate and review titles, fostering an interactive community where individuals can share opinions and discover new content based on collective feedback.  
+In addition, the website IMDb provides a variety of datasets that are valuable for research purposes. These datasets include information on movies, television shows, and video games, encompassing details such as cast and crew, ratings, reviews, release dates, and genres. Researchers can utilize these datasets to conduct in-depth analyses of entertainment content and audience interactions, which can inform business decisions, drive innovation, and advance scholarly research in the field.  
+Indeed, for the purpose of our research we will work on these datasets to answer our Research Question and, more specifically, we will focus on two of them: title.ratings.tsv.gz and title.basics.tsv.gz, that provide us all the necessary information for our analysis.  
 
-For this study, the current amount of observations is 743629 in the sample.
+For this study, the current amount of observations is 743629 in the sample.  
 
-For data preparation, we conducted the project in following steps: 
-The first step in our workflow was to upload or retrieve the IMDb datasets—title.basics.tsv.gz and title.ratings.tsv.gz—directly from the public repository. We automated the process using R scripts that handle downloads and extraction, ensuring reproducibility and minimizing errors from manual handling. During this stage, we also selected the essential variables to address our research questions, focusing on startYear (hypothesized to capture nostalgic sentiment over time), averageRating (our primary dependent variable), numVotes (to gauge popularity), and genres (to investigate genre-specific moderating effects). We chose these variables based on the academic premise that nostalgia may bias audience perceptions of film quality and that certain genres might be more susceptible to this phenomenon.
+For data preparation, we conducted the project in following steps:  
+The first step in our workflow was to retrieve and upload the IMDb datasets we needed (title.basics.tsv.gz and title.ratings.tsv.gz) directly from the public repository. 
+We automated the process using R scripts that handle downloads and extraction, ensuring reproducibility and minimizing errors from manual handling. During this stage, we also selected the essential variables to address our Research Questions.  
+From Title Ratings dataset we focused on:  
+*averageRating*, our primary dependent variable and  
+*numVotes*, to understand films' popularity.  
+While from Title Basics dataset we focused on:  
+*startYear*, being the year of the film's release and that we hypothesized independent variable able to capture nostalgic sentiment overtime.  
+*genres*, our moderator variable, to investigate genre-specific moderating effects.  
+We chose these variables based on the academic premise that nostalgia may bias audience perceptions of film quality and that certain genres might be more susceptible to this phenomenon.
 
 Next, we cleaned the raw data by removing missing values (e.g., titles with no valid release year or rating), filtering out future-dated entries, and converting relevant fields to appropriate data types (e.g., numeric). This step ensured that our dataset accurately represented actual releases and legitimate user feedback, thus strengthening the validity of our analysis. We then merged the cleaned tables on their unique identifier (tconst) to consolidate information on both film characteristics and user ratings in a single dataset. Additionally, we engineered new variables—for instance, an isReleased indicator to exclude unreleased titles and a career_category variable in related scripts—to capture theoretically meaningful distinctions in our data. By structuring the workflow around uploading, choosing variables, cleaning, and merging, we established a robust, code-driven pipeline that upholds academic rigor, supports our nostalgia-focused hypotheses, and provides clear, actionable insights for both scholarly and managerial audiences.
 
-## Repository Overview
+## Results 
 
-- data
-- reporting
-- src
-  - analysis
-  - data-preparation
-- Rhistory
-- gitignore
-- Nostalgia-Effect-IMDB-Analysis.R
-- README.md
-- makefile
+**IMDb Ratings by Genre Over Release Year**
+
+```{r, echo=FALSE}
+knitr::include_graphics(here::here("reporting", "plot_genre_ratings.png"))
+```
+
+**Analysis**
+
+The analysis of IMDb ratings over time reveals that biography films consistently receive the highest ratings, averaging close to 7.0 in recent years, likely due to their strong narratives and connection to real-life events. In contrast, horror films tend to receive the lowest ratings, often below 5.5, suggesting that audiences may be more critical of this genre or that the quality of horror films varies significantly. Crime and adventure genres exhibit stable trends, with minor fluctuations that could be attributed to the impact of blockbuster hits or shifting audience preferences. Notably, action films have shown a gradual increase in ratings, reaching 6.5 in recent years, possibly reflecting advancements in special effects and improved storytelling. A general increase in IMDb ratings across all genres since 2020 suggests that streaming platforms, nostalgia-driven re-evaluations, and evolving user rating behaviors may contribute to this trend. Overall, the findings indicate that genre plays a significant role in shaping IMDb ratings, with biography films being the most well-received and horror films facing the most critical reception. The upward trend in ratings over time further supports the potential influence of nostalgia and audience perception shifts in film evaluation.
 
 
-Dataset Loading
-Once completed, the datasets are loaded into the environment as:
+**Average IMDb Rating Over Release Year**
 
-datasets$title.basics (contains general information about titles)
+```{r, echo=FALSE}
+knitr::include_graphics(here::here("reporting", "plot_yearly_ratings.png"))
+```
 
-datasets$title.ratings (contains rating information)
+**Analysis**
 
-A confirmation message "All datasets successfully downloaded and loaded." will appear upon successful execution.
+The trend in IMDb ratings over time reveals distinct patterns across different periods. Between 1980 and 2000, ratings fluctuated significantly, likely due to shifts in audience preferences and changes in IMDb’s rating system. Some films from this era have maintained high ratings due to cult status, while others have experienced a decline in reception. After 2000, a more consistent upward trend emerges, potentially influenced by improvements in filmmaking techniques and the growing impact of streaming services. The increased accessibility of films has contributed to a broader and more engaged voting audience, leading to more stable and possibly higher ratings. Since 2020, IMDb ratings have surged across various film categories, with potential contributing factors including the nostalgia effect, where older films are reassessed more positively, as well as the role of streaming platforms in making films more accessible and widely reviewed. Additionally, social media influence has played a role in shaping audience perception and generating hype around certain films. Overall, the analysis suggests that newer movies tend to receive higher IMDb ratings, but this trend may be influenced by changes in audience behavior, nostalgia bias, and streaming accessibility. Future research could explore whether this pattern continues or stabilizes as more films are added to the IMDb database.
 
+## Results: The Nostalgia Effect
+# **Trend of IMDb Ratings Over Time**
+
+```{r, echo=FALSE}
+knitr::include_graphics(here::here("reporting", "plot_nostalgic_bias.png"))
+```
+
+**Analysis**
+
+The average IMDb rating has shown a steady increase from 1980 to 2025, with notable fluctuations over time. A slight decline is visible in the late 1980s, followed by a consistent rise starting in the 1990s. Around 2010, ratings appear to stabilize, suggesting a plateauing effect, while in recent years, particularly from 2020 onward, a minor downward trend is noticeable. This could be attributed to changing audience expectations or shifts in rating behavior. Several possible explanations account for these trends. Nostalgic bias may play a role, as older movies tend to receive improved ratings over time due to re-evaluations or cult followings. The rise of streaming platforms has also allowed audiences to rediscover and appreciate older films, potentially contributing to higher ratings. Changes in filmmaking quality, including advancements in technology, storytelling, and cinematography, could explain the overall upward trend in ratings. Additionally, audience behavior and social media influence may shape movie ratings, as online discussions, reviews, and viral trends create shifts in public perception. Overall, the data suggests a general increase in IMDb ratings over time, possibly influenced by nostalgia, accessibility, and evolving audience preferences. The recent slight decline might indicate a new phase in rating behavior, warranting further analysis in the coming years.
+
+## Conclusion
+
+This study examined how nostalgia influences IMDb ratings over time by analyzing the relationship between a film’s release year and audience perception, with genre acting as a moderating factor. The findings from our analysis reveal that movie ratings have generally increased over time, with a notable upward trend beginning in the 1990s. However, this trend is not uniform across all genres, highlighting the complex interplay between nostalgia, audience expectations, and filmmaking advancements.
+
+The results indicate that certain genres, such as biography and crime, maintain consistently high ratings, suggesting that these genres may be less affected by shifts in audience preferences and more resilient to the influence of nostalgia. Conversely, horror and action films exhibit greater fluctuations, with horror consistently receiving the lowest average ratings. This suggests that while nostalgia may contribute to a more positive reassessment of older films, it does not equally benefit all genres. The data also shows that action films have experienced an upward trajectory in ratings, potentially reflecting improvements in technology, special effects, and storytelling.
+
+Another key observation is the recent peak in IMDb ratings since 2020, followed by a minor decline. This pattern could be attributed to the increased accessibility of films through streaming platforms, the re-evaluation of older movies through a nostalgic lens, and the influence of social media in shaping public perception. Additionally, shifts in audience behavior, such as more critical evaluations of contemporary films, may explain the recent slight decrease in ratings.
+
+Overall, the findings suggest that nostalgia plays a significant role in shaping IMDb ratings, with older films often benefiting from re-evaluations over time. However, the extent of this effect varies across genres, indicating that different types of films engage with nostalgia in unique ways. These insights have practical implications for film studios, streaming platforms, and marketers seeking to leverage nostalgia in content curation, marketing strategies, and audience engagement. Further research could explore whether this pattern continues as more films enter the IMDb database and whether emerging trends in streaming and digital media further reshape audience perceptions and rating behaviors.
 
 
 ## References
 •⁠  ⁠Tetik, T., & Türkeli, Ö. (2023). POPULAR CINEMA AS NOSTALGIA INDUSTRY: REUNIONS, REMAKES, AND REQUELS. Sinecine: Sinema Araştırmaları Dergisi, 14(1), 7-31. https://doi.org/10.32001/sinecine.1253910 
 •⁠  ⁠Ulker-Demirel, E., Akyol, A. and Simsek, G.G. (2018), "Marketing gitand consumption of art products: the movie industry", Arts and the Market, Vol. 8 No. 1, pp. 80-98. https://doi.org/10.1108/AAM-06-2017-0011 
 •⁠  ⁠Andrade, S. (2023). The impact of nostalgia and social setting on consumer motivation to watch a movie at the cinema vs. through streaming. Handle.net. http://hdl.handle.net/10400.14/42261
+
+
 
