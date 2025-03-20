@@ -93,7 +93,17 @@ Overall, this study highlights how nostalgia shapes IMDb user ratings, influenci
 
 ## Results
 
-››
+Average IMDb Rating Over Release Year
+plot1 <- ggplot(data = yearly_ratings, aes(x = startYear, y = avg_rating)) +
+  geom_line(color = "blue") + 
+  labs(
+    title = "Average IMDb Rating Over Release Year",
+    x = "Release Year",
+    y = "Average Rating"
+  ) +
+  theme_minimal()
+print(plot1)
+
 
 
 ## References
