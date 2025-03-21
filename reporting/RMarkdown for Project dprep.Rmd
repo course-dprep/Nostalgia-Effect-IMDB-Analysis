@@ -86,9 +86,10 @@ An ANOVA test further confirmed that ratings differ significantly between genres
 Throughout the analysis, we checked key regression assumptions: Levene’s test repeatedly rejected homoscedasticity (p < 2.2e-16), indicating non-constant variance in residuals, while Lilliefors (Kolmogorov–Smirnov) tests consistently rejected normality—both globally and within each genre. These violations suggest caution in interpreting p-values and support the consideration of robust or non-parametric models in future work.  
 
 **IMDb Ratings vs. Release Year
-```{r, echo=FALSE}
-knitr::include_graphics(here::here("reporting", "imdb_ratings_vs_release_year.png"))
+```{r, echo=FALSE, fig.align='center', out.width='80%'}
+knitr::include_graphics(here::here("data", "imdb_ratings_vs_release_year.pdf"))
 ```
+
 A final scatter plot with a linear fit visually confirmed the gradual upward trend in IMDb ratings over time. The findings indicate a small but statistically significant increase in ratings across decades, varying by genre, with minimal distortion due to popularity.  
 The densely packed black dots highlight the large dataset, with many movies released each year. Ratings are predominantly clustered between 5 and 8, indicating that most movies fall within this range. Highly rated movies (>8.5) are relatively rare, while very few films have ratings below 5—possibly because lower-rated movies tend to be less popular or less likely to remain relevant over time.  
 The findings indicate a small but statistically significant increase in ratings across decades, varying by genre, with minimal distortion due to popularity. However, model assumptions were not fully satisfied, suggesting caution in interpretation.
@@ -96,8 +97,8 @@ The findings indicate a small but statistically significant increase in ratings 
 ## Results
 **IMDb Ratings by Genre Over Release Year**
 
-```{r, echo=FALSE}
-knitr::include_graphics(here::here("reporting", "plot_genre_ratings.png"))
+```{r, echo=FALSE, fig.align='center', out.width='80%'}
+knitr::include_graphics(here::here("data", "plot_genre_ratings.pdf"))
 ```
 The analysis of IMDb ratings by genre over time reveals that *Biography* films consistently receive the highest ratings, averaging close to 7.0, likely due to their strong narratives and character development, and critical acclaim, which result in more favorable audience reception. Biography films, in particular, often center around real-life figures or historical events, which could lead to higher engagement from audiences who appreciate realism and storytelling depth.  
 *Crime* and *Adventure* movies maintain an average IMDb rating between 5.8 and 6.5, showing greater fluctuation over time. The variability could be attributed  to the impact of blockbuster hits or shifting audience preferences, to changing industry standards, evolving audience expectations, and the influence of major film franchises.
@@ -107,8 +108,8 @@ A general increase in IMDb ratings across all genres since 2020 suggests that st
 
 **Average IMDb Rating Over Release Year**
 
-```{r, echo=FALSE}
-knitr::include_graphics(here::here("reporting", "plot_yearly_ratings.png"))
+```{r, echo=FALSE, fig.align='center', out.width='80%'}
+knitr::include_graphics(here::here("data", "plot_yearly_ratings.pdf"))
 ```
 The trend in IMDb ratings over time reveals distinct patterns across different periods. Between 1980 and 2000, ratings fluctuated from 6.0 to 6.5, suggesting that while there is a trend, it does not dramatically reshape the perception of movies over time and it's likely due to shifts in audience preferences and changes in IMDb’s rating system. Some films from this era have maintained high ratings due to cult status, while others have experienced a decline in reception.  
 Some sharp declines (e.g., early 1990s and mid-2020s) suggest that certain periods may have had a larger share of lower-rated films or that audience expectations changed.
@@ -119,8 +120,8 @@ Overall, the analysis suggests that newer movies tend to receive higher IMDb rat
 
 # **Trend of IMDb Ratings Over Time**
 
-```{r, echo=FALSE}
-knitr::include_graphics(here::here("reporting", "plot_nostalgic_bias.png"))
+```{r, echo=FALSE, fig.align='center', out.width='80%'}
+knitr::include_graphics(here::here("data", "plot_nostalgic_bias.pdf"))
 ```
 This analysis explores how IMDb ratings have evolved over the decades, with a particular focus on the role of nostalgia bias in shaping audience perception. The graph presents a nonlinear trend in average IMDb ratings over time, deviating from a simple upward trajectory. Instead, we observe a U-shaped pattern, suggesting that certain eras of film are rated more favorably than others, potentially due to nostalgia-driven biases. While one might expect a steady increase in ratings due to improvements in filmmaking techniques, the data implies that audience memory, selective rewatching, and cultural context play significant roles in rating behavior.
 The average IMDb rating has shown a steady increase from 1980 to 2025, with notable fluctuations over time. A slight decline is visible in the late 1980s, followed by a consistent rise starting in the 1990s. This drop may reflect shifting audience expectations, changes in industry trends, or a lack of strong nostalgic attachment to films from this period.  
@@ -146,6 +147,3 @@ Ultimately, IMDb ratings should not be interpreted solely as indicators of film 
 •⁠  ⁠Tetik, T., & Türkeli, Ö. (2023). POPULAR CINEMA AS NOSTALGIA INDUSTRY: REUNIONS, REMAKES, AND REQUELS. Sinecine: Sinema Araştırmaları Dergisi, 14(1), 7-31. https://doi.org/10.32001/sinecine.1253910 
 •⁠  ⁠Ulker-Demirel, E., Akyol, A. and Simsek, G.G. (2018), "Marketing gitand consumption of art products: the movie industry", Arts and the Market, Vol. 8 No. 1, pp. 80-98. https://doi.org/10.1108/AAM-06-2017-0011 
 •⁠  ⁠Andrade, S. (2023). The impact of nostalgia and social setting on consumer motivation to watch a movie at the cinema vs. through streaming. Handle.net. http://hdl.handle.net/10400.14/42261
-
-
-

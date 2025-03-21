@@ -91,7 +91,12 @@ library (R.utils)
 library (tidyverse)
 library (lubridate)
 library(readr)
-
+library(here)
+library(nortest)
+library(ggplot2)
+library(rmarkdown)
+library(tinytex)
+library(knitr)
 
 ## Running Instructions 
 

@@ -12,6 +12,7 @@ if (!require("readr")) install.packages("readr", dependencies = TRUE)
 if (!require("ggplot2")) install.packages("ggplot2", dependencies = TRUE)
 if (!require("rmarkdown")) install.packages("rmarkdown", dependencies = TRUE)
 if (!require("tinytex")) install.packages("tinytex", dependencies = TRUE)
+if (!require("knitr")) install.packages("knitr", dependencies = TRUE)
 
 # Ensure "data" folder exists
 dir.create(here("data"), showWarnings = FALSE)
