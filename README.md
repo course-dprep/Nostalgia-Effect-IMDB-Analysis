@@ -110,11 +110,16 @@ To execute the analysis, follow these steps:
    ```sh
    cd Nostalgia-Effect-IMDB-Analysis
    ```
-4. Execute the following command to automate the data processing pipeline:
+4. Install Pandoc (required for document conversion and report generation):
+   ```sh
+   brew install pandoc  # For macOS 
+   choco install pandoc  # For Windows (using Chocolatey)
+   ```
+5. Execute the following command to automate the data processing pipeline:
    ```sh
    make
    ```
-5. Once `make` has successfully executed all scripts, it will generate cleaned datasets inside the `data` folder.
+6. Once `make` has successfully executed all scripts, it will generate cleaned datasets inside the `data` folder.
 
 ## About 
 
