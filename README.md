@@ -110,11 +110,7 @@ To execute the analysis, follow these steps:
    ```sh
    cd Nostalgia-Effect-IMDB-Analysis
    ```
-4. Install Pandoc (required for document conversion and report generation):
-   ```sh
-   brew install pandoc  # For macOS 
-   choco install pandoc  # For Windows (using Chocolatey)
-   ```
+4. Install Pandoc (required for document conversion and report generation) following instructions at: https://www.pandoc.org/installing.html
 5. Execute the following command to automate the data processing pipeline:
    ```sh
    make
