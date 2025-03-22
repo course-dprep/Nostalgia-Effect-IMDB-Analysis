@@ -114,6 +114,9 @@ To ensure smooth execution of this R project, confirm that you have installed th
 | `rmarkdown`      |
 | `tinytex`        |
 | `knitr`          |
+| `car`            |
+| `dplyr`          |
+
 
 
 ## Running Instructions 
@@ -128,7 +131,7 @@ To execute the analysis, follow these steps:
    ```sh
    cd Nostalgia-Effect-IMDB-Analysis
    ```
-4. Install Pandoc (required for document conversion and report generation) following instructions at:https://tilburgsciencehub.com/topics/computer-setup/software-installation/document-creation/pandoc/
+4. Install Pandoc (required for document conversion and report generation) following instructions at: https://tilburgsciencehub.com/topics/computer-setup/software-installation/document-creation/pandoc/
 5. Execute the following command to automate the data processing pipeline:
    ```sh
    make
