@@ -24,17 +24,17 @@ To what extent is IMDb movie user rating influenced by the movie released year? 
 
 ## Data
 
-For this study, we used publicly available datasets from IMDb’s non-commercial dataset repository (IMDb Non-Commercial Datasets).   
-Link to the website: https://developer.imdb.com/non-commercial-datasets/  
+For this study, we used publicly available datasets from IMDb’s non-commercial dataset repository [(IMDb Non-Commercial Datasets)](https://developer.imdb.com/non-commercial-datasets/).
+
 Specifically, we utilized two key datasets:  
 
-title.ratings.tsv.gz – Provides IMDb user ratings, including:  
-Average Rating (DV) from the averageRating field.  
-Number of Votes from the numVotes field.   
+**title.ratings.tsv.gz** – Provides IMDb user ratings, including:  
+  Average Rating (DV) from the averageRating field.  
+  Number of Votes from the numVotes field.   
 
-title.basics.tsv.gz – Contains movie metadata, including:  
-Release Year (IV) from the startYear field.  
-Genre (Moderator Variable) from the genres field.     
+**title.basics.tsv.gz** – Contains movie metadata, including:  
+  Release Year (IV) from the startYear field.  
+  Genre (Moderator Variable) from the genres field.     
 
 Why IMDb?
 
@@ -66,85 +66,97 @@ Our preliminary analysis suggests that IMDb movie ratings exhibit a nostalgia ef
 Additionally, genre plays a moderating role in this relationship. Some genres, such as classics, dramas, and sci-fi, show stronger nostalgia-driven rating inflation, whereas comedy and action films tend to maintain a more stable rating distribution over time. These findings suggest that different genres age differently in the eyes of audiences, possibly due to shifting cultural preferences and cinematic trends.
 
 The insights from this study can be utilized in multiple ways:
-    - Industry Application: Streaming platforms and movie studios can adjust recommendation algorithms and marketing strategies based on nostalgia-driven biases.
-    - Content Strategy: Filmmakers can leverage nostalgia when producing remakes, reboots, or sequels to maximize audience engagement.
-    - Academic Contribution: This research contributes to media psychology and consumer behavior studies by offering empirical evidence of Nostalgia’s impact on movie perception.
+
+- *Industry Application:* Streaming platforms and movie studios can adjust recommendation algorithms and marketing strategies based on nostalgia-driven biases.
+    
+- *Content Strategy:* Filmmakers can leverage nostalgia when producing remakes, reboots, or sequels to maximize audience engagement.
+    
+- *Academic Contribution:* This research contributes to media psychology and consumer behavior studies by offering empirical evidence of Nostalgia’s impact on movie perception.
 
 Understanding the nostalgia effect in movie ratings is crucial for both industry professionals and researchers. It sheds light on how cultural memory shapes audience evaluation, helping media   companies refine their content curation, marketing efforts, and strategic decision-making when promoting older films or launching new projects with nostalgic appeal. 
 
 ## Repository Overview 
 
 ```
-Nostalgia-Effect-IMDB-Analysis
-├── data
-│   ├── datasets
-├── reporting
-├── src
-│   ├── analysis
-│   ├── data-preparation
-├── .Rhistory
-├── .gitignore
-├── Nostalgia-Effect-IMDB-Analysis.R
+├── Nostalgia-Effect-IMDB-Analysis.Rproj
 ├── README.md
+├── data
 ├── makefile
+├── reporting
+│   ├── RMarkdown for Project dprep.Rmd
+│   ├── makefile
+│   └── render_report.R
+└── src
+    ├── analysis
+    │   ├── analysis.R
+    │   ├── makefile
+    │   └── plots.R
+    └── data-preparation
+        ├── clean_dataset.R
+        ├── clean_data_merging.R
+        ├── data_merging.R
+        ├── download-data.R
+        └── makefile
+
 ```
 
-- Functions of different scripts:
+Functions of different scripts:
   
-download-data.R – Downloads the raw IMDb datasets and ensures required packages and folders are set up.
+- *download-data.R* – Downloads the raw IMDb datasets and ensures required packages and folders are set up.
 
-clean.R – Cleans and filters the raw IMDb datasets by removing invalid entries and saving cleaned versions.
+- *clean_dataset.R* – Cleans and filters the raw IMDb datasets by removing invalid entries and saving cleaned versions.
 
-data_merging.R – Merges the cleaned IMDb datasets and flags entries as released or unreleased.
+- *data_merging.R* – Merges the cleaned IMDb datasets and flags entries as released or unreleased.
 
-clean_data_merging.R – Further cleans the merged dataset by removing outliers and filtering relevant genres based on vote counts.
+- *clean_data_merging.R* – Further cleans the merged dataset by removing outliers and filtering relevant genres based on vote counts.
 
-analysis.R – Performs statistical analyses, including regressions and assumption tests, to explore relationships between release year, genre, and IMDb ratings.
+- *analysis.R* – Performs statistical analyses, including regressions and assumption tests, to explore relationships between release year, genre, and IMDb ratings.
 
-plots.R – Generates and saves visualizations illustrating trends in IMDb ratings over time and across genres.
+- *plots.R* – Generates and saves visualizations illustrating trends in IMDb ratings over time and across genres.
 
-makefile – Automates the execution of scripts in the correct order for downloading, cleaning, merging, analyzing, and visualizing IMDb data
+- *makefile* – Automates the execution of scripts in the correct order for downloading, cleaning, merging, analyzing, and visualizing IMDb data
 
 ## Dependencies 
 
-To ensure smooth execution of this R project, confirm that you have installed the following packages. If any are missing, you can obtain them by running install.packages("packageName"). After installation, make them available in your current session by invoking the library() function.
+To run the project, following software and packages need to be installed:
 
-| Install Packages |
-|------------------|
-| `data.table`     |
-| `R.utils`        |
-| `tidyverse`      |
-| `lubridate`      |
-| `readr`          |
-| `here`           |
-| `nortest`        |
-| `ggplot2`        |
-| `rmarkdown`      |
-| `tinytex`        |
-| `knitr`          |
-| `car`            |
-| `dplyr`          |
+1. R and RStudio: [Installation Guide](https://tilburgsciencehub.com/topics/computer-setup/software-installation/rstudio/r/)
+2. Make: [Installation Guide](https://tilburgsciencehub.com/topics/automation/automation-tools/makefiles/make/)
+3. Pandoc: [Installation Guide](https://tilburgsciencehub.com/topics/computer-setup/software-installation/document-creation/pandoc/)
 
+To ensure smooth execution of this R project, confirm that you have installed the following packages:
 
+```
+packages <- c("data.table", "dplyr", "lubridate", "rmarkdown", "tidyverse", "readr", "here", "tinytex", "nortest", "R.utils", "knitr", "ggplot2")
+install.packages(packages)
+```
 
 ## Running Instructions 
 
 To execute the analysis, follow these steps:
+
 1. Fork this repository to your own GitHub account.
+
 2. Clone the repository to your local machine using the command:
+
    ```sh
    git clone https://github.com/course-dprep/Nostalgia-Effect-IMDB-Analysis.git
    ```
+   
 3. Set your working directory to the **`Nostalgia-Effect-IMDB-Analysis`** folder:
+
    ```sh
    cd Nostalgia-Effect-IMDB-Analysis
    ```
-4. Install Pandoc (required for document conversion and report generation) following instructions at: https://tilburgsciencehub.com/topics/computer-setup/software-installation/document-creation/pandoc/
-5. Execute the following command to automate the data processing pipeline:
+
+4. Execute the following command to automate the data processing pipeline:
+
    ```sh
    make
    ```
-6. Once `make` has successfully executed all scripts, it will generate cleaned datasets inside the `data` folder.
+   
+5. Once `make` has successfully executed all scripts, it will generate cleaned datasets inside the `data` folder.
+
 
 ## About 
 
@@ -157,4 +169,15 @@ Tetik, T., & Türkeli, Ö. (2023). POPULAR CINEMA AS NOSTALGIA INDUSTRY: REUNION
 
 Ulker-Demirel, E., Akyol, A. and Simsek, G.G. (2018), "Marketing and consumption of art products: the movie industry", Arts and the Market, Vol. 8 No. 1, pp. 80-98. https://doi.org/10.1108/AAM-06-2017-0011 
 
-The project is implemented by team < 4 > members: < Beatrice Ruggeri ID: 2146104, Dilay Alpaydin ID: , Eva Sozzi ID: 2151986, Maria Kim Capuani ID: 2063323, Zhaodi Ma 2124843>
+## Contributors
+The project is implemented by **team 4** members: 
+
+- Beatrice Ruggeri, ID: 2146104,  e-mail: b.ruggeri@tilburguniversity.edu
+
+- Dilay Alpaydin, ID: 2154476, e-mail: d.alpaydin@tilburguniversity.edu
+
+- Eva Sozzi, ID: 2151986, e-mail: e.sozzi@tilburguniversity.edu
+
+- Maria Kim Capuani, ID: 2063323, e-mail: m.k.capuani@tilburguniversity.edu
+
+- Zhaodi Ma, ID: 2124843, e-mail: j.lin_4@tilburguniversity.edu

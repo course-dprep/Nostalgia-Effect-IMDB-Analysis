@@ -10,9 +10,9 @@ download_data:
 	Rscript download-data.R
 
 # Cleaning title ratings and basics
-$(DATA_DIR)/title_basics_cleaned.csv $(DATA_DIR)/title_ratings_cleaned.csv: clean.R | download_data
+$(DATA_DIR)/title_basics_cleaned.csv $(DATA_DIR)/title_ratings_cleaned.csv: clean_dataset.R | download_data
 	@echo "Cleaning title basics and title ratings..."
-	Rscript clean.R
+	Rscript clean_dataset.R
 	
 # Merge cleaned data into a final file (data/final_merged.csv)
 $(DATA_DIR)/final_merged.csv: data_merging.R $(DATA_DIR)/title_basics_cleaned.csv $(DATA_DIR)/title_ratings_cleaned.csv

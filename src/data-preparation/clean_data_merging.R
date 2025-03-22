@@ -41,8 +41,8 @@ merged_df_clean <- merged_df_clean %>%
 
 # Process genre column: keep only the first genre
 merged_df_clean <- merged_df_clean %>%
-  mutate(genres = sapply(strsplit(as.character(genres), ","), ⁠ [ ⁠, 1)) %>%
-  mutate(genres = as.factor(genres))  # Convert to factor
+  mutate(genres = sapply(strsplit(as.character(genres), ","), `[`, 1)) %>%
+  mutate(genres = as.factor(genres))  # Convert to factor  # Convert to factor
 
 # Choosing the genres (if the numVotes >= Total average of numVotes)
 avg_votes_per_genre <- merged_df_clean %>%
