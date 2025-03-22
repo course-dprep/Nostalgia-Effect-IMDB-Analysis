@@ -81,6 +81,22 @@ Nostalgia-Effect-IMDB-Analysis
 ├── makefile
 ```
 
+- Functions of different scripts:
+  
+download-data.R – Downloads the raw IMDb datasets and ensures required packages and folders are set up.
+
+clean.R – Cleans and filters the raw IMDb datasets by removing invalid entries and saving cleaned versions.
+
+data_merging.R – Merges the cleaned IMDb datasets and flags entries as released or unreleased.
+
+clean_data_merging.R – Further cleans the merged dataset by removing outliers and filtering relevant genres based on vote counts.
+
+analysis.R – Performs statistical analyses, including regressions and assumption tests, to explore relationships between release year, genre, and IMDb ratings.
+
+plots.R – Generates and saves visualizations illustrating trends in IMDb ratings over time and across genres.
+
+makefile – Automates the execution of scripts in the correct order for downloading, cleaning, merging, analyzing, and visualizing IMDb data
+
 ## Dependencies 
 
 To ensure smooth execution of this R project, confirm that you have installed the following packages. If any are missing, you can obtain them by running install.packages("packageName"). After installation, make them available in your current session by invoking the library() function.
