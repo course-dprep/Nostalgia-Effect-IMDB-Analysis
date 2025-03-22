@@ -34,14 +34,13 @@ Our main interest was to understand how users perception of films changed over t
 
 - How many observations are there in the final dataset?
   For this study, the current amount of observations is 743629 in the sample.
-  
-- Include a table of variable description/operstionalisation.
-| Variable Name  | Description / Operationalization |
-|---------------|--------------------------------|
+
+| Variable Name   | Description / Operationalization |
+|-----------------|--------------------------------|
 | `averageRating` | Dependent Variable (DV). IMDb user rating on a 0–10 scale. This variable is used to find out the average rating per user|
-| `numVotes` | Number of votes submitted for the title (additional metric). Ranges from 0-3200000|
-| `startYear` | Independent Variable (IV). Year the title was first released. Ranges from 1980 to 2025|
-| `genres` | Moderator Variable. Primary genres listed for the title by removing any possible combination of different genres and maintaining only the first one as the indicative|
+| `numVotes`      | Number of votes submitted for the title (additional metric). Ranges from 0-3200000|
+| `startYear`     | Independent Variable (IV). Year the title was first released. Ranges from 1980 to 2025|
+| `genres`        | Moderator Variable. Primary genres listed for the title by removing any possible combination of different genres and maintaining only the first one as the indicative|
 
 ## Method
 
