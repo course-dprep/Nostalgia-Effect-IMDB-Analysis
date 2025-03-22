@@ -44,6 +44,27 @@ Our main interest was to understand how users perception of films changed over t
 
 For this study, the current amount of observations is 743629 in the sample.
 
+##Tittle Basics Dataset
+| Variable         | Description                                                                 |
+|------------------|-----------------------------------------------------------------------------|
+| `tconst`         | Alphanumeric unique identifier of the title                                |
+| `titleType`      | Type/format of the title (e.g., movie, short, tvseries, etc.)              |
+| `primaryTitle`   | The popular title used by filmmakers on promotional materials              |
+| `originalTitle`  | Original title in the original language                                    |
+| `isAdult`        | 0 = non-adult title; 1 = adult title                                        |
+| `startYear`      | Release year of the title or start year for a TV series                    |
+| `endYear`        | End year for a TV series; '\N' for other title types                       |
+| `runtimeMinutes` | Primary runtime of the title in minutes                                    |
+| `genres`         | Up to three genres associated with the title (comma-separated)             |
+
+##Title Ratings Dataset
+| Variable        | Description                                                        |
+|----------------|--------------------------------------------------------------------|
+| `tconst`        | Alphanumeric unique identifier of the title                        |
+| `averageRating` | Weighted average of all the individual user ratings                |
+| `numVotes`      | Number of votes the title has received                             |
+
+##Dataset Used for Analysis
 | Variable Name   | Description / Operationalization |
 |-----------------|--------------------------------|
 | `averageRating` | Dependent Variable (DV). IMDb user rating on a 0–10 scale. This variable is used to find out the average rating per user|
