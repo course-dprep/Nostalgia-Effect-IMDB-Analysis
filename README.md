@@ -1,9 +1,12 @@
 
 ## The Nostalgia Effect: How Release Year and Genre Shape IMDb Movie Ratings Over Time
+
 This project aims to explore how nostalgia influences IMDb movie ratings by analyzing the relationship between a film’s release year and audience perception, with genre as a moderating factor.  
+
 As nostalgia increasingly shapes consumer preferences, understanding its impact on movie reception can reveal biases in ratings and cultural memory effects. This study provides insights into how audiences evaluate films over time, helping industry professionals leverage nostalgia in content creation, marketing, and distribution strategies.
 
 ## Motivation
+
 In today’s entertainment industry, maximizing audience engagement and profitability is crucial, and nostalgia has been identified as a key factor influencing movie reception (Ulker-Demirel et al., 2018). While studies have explored whether nostalgia motivates audiences to watch remakes and reunions (Tetik & Türkelı, 2023) or influences viewer engagement (Andrade, 2023), little research has examined how nostalgia manifests in IMDb user ratings and whether it directly impacts the perceived quality of a movie.  
 
 From an academic perspective, this study contributes to film studies, behavioral psychology, and consumer research by empirically analyzing rating patterns over time and assessing whether nostalgia bias or selective survival bias systematically influence IMDb ratings. Additionally, it examines how factors such as genre interact with this relationship, offering an understanding of audience preferences and cultural memory in film evaluation.  
@@ -33,12 +36,13 @@ title.basics.tsv.gz – Contains movie metadata, including:
 Release Year (IV) from the startYear field.  
 Genre (Moderator Variable) from the genres field.     
 
-Why IMDb?  
+Why IMDb?
+
 IMDb provides a high-quality dataset for analyzing trends in movie ratings over time, looking at how the trend changed overtime, based on the influence of genre. The structured dataset ensures a methodologically sound approach for studying how IMDb user ratings evolve with release year and genre differences.
+
 Our main interest was to understand how users perception of films changed over time and check whether, over different periods (we considered from 1980s until today), one genre was more famous than others, in orther to be able to provide meaningful insights into how consumers behaviour related to films and genres changed overtime.
 
-- How many observations are there in the final dataset?
-  For this study, the current amount of observations is 743629 in the sample.
+For this study, the current amount of observations is 743629 in the sample.
 
 | Variable Name   | Description / Operationalization |
 |-----------------|--------------------------------|
@@ -49,26 +53,24 @@ Our main interest was to understand how users perception of films changed over t
 
 ## Method
 
-- What methods do you use to answer your research question?
 To address our research question, we implemented a structured data analysis workflow consisting of data cleaning, merging, and statistical analysis, with a focus on linear regression to quantify the impact of release year on IMDb ratings, because we were intrested in understanding whether specific films, were famous only during their release year, or whether the Nostalgia Effect kept them high over time.
 
 We also wanted to see whether this effect changed with the effect of genre, by looking at whether genres impacted the voting, wether in specific period times some genres were more popular than others and whether this popularity was due by Nostalgia Effect, as well.
-  
-- Provide justification for why it is the most suitable.
+
 The study uses linear regression to quantify the impact of release year on IMDb ratings, with genre as a moderating factor. Descriptive analysis identifies trends, and statistical validation ensures robustness. This approach provides a clear, interpretable assessment of nostalgia effects.
 
 ## Preview of Findings 
-- Describe the gist of your findings (save the details for the final paper!)
-  Our preliminary analysis suggests that IMDb movie ratings exhibit a nostalgia effect, where older films tend to receive higher average ratings compared to more recent releases. This trend persists even after controlling for the number of votes and genre, indicating that audience perception of film quality is influenced by cultural memory and retrospective appreciation.
-  Additionally, genre plays a moderating role in this relationship. Some genres, such as classics, dramas, and sci-fi, show stronger nostalgia-driven rating inflation, whereas comedy and action films tend to maintain a more stable rating distribution over time. These findings suggest that different genres age differently in the eyes of audiences, possibly due to shifting cultural preferences and cinematic trends.
 
-- How are the findings/end product of the project deployed?
-  The insights from this study can be utilized in multiple ways:
+Our preliminary analysis suggests that IMDb movie ratings exhibit a nostalgia effect, where older films tend to receive higher average ratings compared to more recent releases. This trend persists even after controlling for the number of votes and genre, indicating that audience perception of film quality is influenced by cultural memory and retrospective appreciation.
+
+Additionally, genre plays a moderating role in this relationship. Some genres, such as classics, dramas, and sci-fi, show stronger nostalgia-driven rating inflation, whereas comedy and action films tend to maintain a more stable rating distribution over time. These findings suggest that different genres age differently in the eyes of audiences, possibly due to shifting cultural preferences and cinematic trends.
+
+The insights from this study can be utilized in multiple ways:
     - Industry Application: Streaming platforms and movie studios can adjust recommendation algorithms and marketing strategies based on nostalgia-driven biases.
     - Content Strategy: Filmmakers can leverage nostalgia when producing remakes, reboots, or sequels to maximize audience engagement.
     - Academic Contribution: This research contributes to media psychology and consumer behavior studies by offering empirical evidence of Nostalgia’s impact on movie perception.
-- Explain the relevance of these findings/product.
-  Understanding the nostalgia effect in movie ratings is crucial for both industry professionals and researchers. It sheds light on how cultural memory shapes audience evaluation, helping media   companies refine their content curation, marketing efforts, and strategic decision-making when promoting older films or launching new projects with nostalgic appeal. 
+
+Understanding the nostalgia effect in movie ratings is crucial for both industry professionals and researchers. It sheds light on how cultural memory shapes audience evaluation, helping media   companies refine their content curation, marketing efforts, and strategic decision-making when promoting older films or launching new projects with nostalgic appeal. 
 
 ## Repository Overview 
 
