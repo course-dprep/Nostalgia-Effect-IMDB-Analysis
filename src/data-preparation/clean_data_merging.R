@@ -15,7 +15,7 @@ cat("Total rows before cleaning:", nrow(data_merging), "\n")
 merged_df_clean <- data_merging %>%
   drop_na() # Remove rows with NA values
 
-# Compute outlier bounds for ⁠ averageRating ⁠ using the IQR rule and remove outliers
+# Compute outlier bounds for averageRating⁠ using the IQR rule and remove outliers
 stats <- merged_df_clean %>%
   summarize(
     Q1 = quantile(averageRating, 0.25, na.rm = TRUE),

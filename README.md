@@ -20,6 +20,7 @@ Understanding how genre moderates this effect also allows industry professionals
 Ultimately, this study provides a data-driven framework for maximizing audience appeal, optimizing content distribution, and making strategic investment decisions in the evolving film industry.
 
 ## Research Question
+
 To what extent is IMDb movie user rating influenced by the movie released year? And to what extent does movie genre influence this relationship?
 
 ## Data
@@ -96,6 +97,14 @@ The insights from this study can be utilized in multiple ways:
 
 Understanding the nostalgia effect in movie ratings is crucial for both industry professionals and researchers. It sheds light on how cultural memory shapes audience evaluation, helping media   companies refine their content curation, marketing efforts, and strategic decision-making when promoting older films or launching new projects with nostalgic appeal. 
 
+**Average IMDb Ratings by Genre Over Release Year**
+
+<img src="data/plot_genre_ratings.png" alt="Plot Genre Ratings" width="500" />
+
+**Potential Nostalgic Bias: Trends of Ratings Over Time**
+
+<img src="data/plot_nostalgic_bias.png" alt="Plot Genre Ratings" width="500" />
+
 ## Repository Overview 
 
 ```
@@ -134,6 +143,8 @@ Functions of different scripts:
 - *analysis.R* – Performs statistical analyses, including regressions and assumption tests, to explore relationships between release year, genre, and IMDb ratings.
 
 - *plots.R* – Generates and saves visualizations illustrating trends in IMDb ratings over time and across genres.
+
+- *render_report.R* - Renders the final report in the pdf format
 
 - *makefile* – Automates the execution of scripts in the correct order for downloading, cleaning, merging, analyzing, and visualizing IMDb data
 
@@ -184,6 +195,7 @@ To execute the analysis, follow these steps:
 This project is set up as part of the Master's course [Data Preparation & Workflow Management](https://dprep.hannesdatta.com/) at the [Department of Marketing](https://www.tilburguniversity.edu/about/schools/economics-and-management/organization/departments/marketing), [Tilburg University](https://www.tilburguniversity.edu/), the Netherlands.
 
 ## Reference List
+
 Andrade, S. (2023). The impact of nostalgia and social setting on consumer motivation to watch a movie at the cinema vs. through streaming. Handle.net. http://hdl.handle.net/10400.14/42261 
 
 Tetik, T., & Türkeli, Ö. (2023). POPULAR CINEMA AS NOSTALGIA INDUSTRY: REUNIONS, REMAKES, AND REQUELS. Sinecine: Sinema Araştırmaları Dergisi, 14(1), 7-31. https://doi.org/10.32001/sinecine.1253910 
@@ -191,6 +203,7 @@ Tetik, T., & Türkeli, Ö. (2023). POPULAR CINEMA AS NOSTALGIA INDUSTRY: REUNION
 Ulker-Demirel, E., Akyol, A. and Simsek, G.G. (2018), "Marketing and consumption of art products: the movie industry", Arts and the Market, Vol. 8 No. 1, pp. 80-98. https://doi.org/10.1108/AAM-06-2017-0011 
 
 ## Contributors
+
 The project is implemented by **team 4** members: 
 
 - Beatrice Ruggeri, ID: 2146104,  e-mail: b.ruggeri@tilburguniversity.edu

@@ -79,5 +79,9 @@ ggsave(plot = plot1, file = here("data", "plot_yearly_ratings.pdf"))
 ggsave(plot = plot2, file = here("data", "plot_genre_ratings.pdf"))
 ggsave(plot = plot3, file = here("data", "plot_nostalgic_bias.pdf"))
 
+# To use them in README:
+ggsave(plot = plot2, file = here("data", "plot_genre_ratings.png"))
+ggsave(plot = plot3, file = here("data", "plot_nostalgic_bias.png"))
+
 # Print final message
 cat("Plots correctly saved.\n")
