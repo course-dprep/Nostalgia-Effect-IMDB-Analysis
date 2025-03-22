@@ -29,30 +29,8 @@ From a real-world and managerial standpoint, this research has direct implicatio
 ## Research Question
 To what extent is (i)  IMDb movie user rating influenced by the (ii) movie released year? And to what extent does (iii) movie genre influence this relationship?
 
-## Data
-
-For this study, we used publicly available datasets from IMDb’s non-commercial dataset repository (IMDb Non-Commercial Datasets). 
-Link to the website: https://developer.imdb.com/non-commercial-datasets/ 
-
-Specifically, we utilized two key datasets: 
-title.ratings.tsv.gz – Provides IMDb user ratings, including: 
-•⁠  ⁠Average Rating (DV) from the averageRating field. 
-•⁠  ⁠Number of Votes from the numVotes field. 
-
-title.basics.tsv.gz – Contains movie metadata, including: 
-*Release Year (IV) from the startYear field. 
-*Genre (Moderator Variable) from the genres field. 
-*Country (Control Variable - U.S.), filtered to include only U.S. releases. 
-
-| Variable Name  | Description / Operationalization |
-|---------------|--------------------------------|
-| `averageRating` | Dependent Variable (DV). IMDb user rating on a 0–10 scale. |
-| `numVotes` | Number of votes submitted for the title (additional metric). |
-| `startYear` | Independent Variable (IV). Year the title was first released. |
-| `genres` | Moderator Variable. Primary genres listed for the title. |
-| `country` | Control Variable. Filtered for U.S. releases if specified. |
-
-Why IMDb? 
+## Context
+**Why IMDb?** 
 ​The Internet Movie Database (IMDb) is widely regarded as a valuable resource for both general users and researchers interested in film and television.  
 The platform offers extensive information on millions of films and television programs including details about cast and crew, plot summaries, and production notes. Moreover, it allows users to rate and review titles, fostering an interactive community where individuals can share opinions and discover new content based on collective feedback.  
 In addition, the website IMDb provides a variety of datasets that are valuable for research purposes. These datasets include information on movies, television shows, and video games, encompassing details such as cast and crew, ratings, reviews, release dates, and genres. Researchers can utilize these datasets to conduct in-depth analyses of entertainment content and audience interactions, which can inform business decisions, drive innovation, and advance scholarly research in the field.  
@@ -85,7 +63,7 @@ The model fit improved substantially (R² ≈ 0.148), but also introduced high m
 An ANOVA test further confirmed that ratings differ significantly between genres (F(4, 51865) = 2169, p < 2.2e-16). To assess whether the apparent trend over time was driven by popularity bias, a third regression model controlled for the number of votes. The results showed that both startYear (β = 0.0059) and numVotes (β = 2.2e-6) were significant predictors, yet the year’s effect remained stable, suggesting that the observed trend is not merely a reflection of title popularity.  
 Throughout the analysis, we checked key regression assumptions: Levene’s test repeatedly rejected homoscedasticity (p < 2.2e-16), indicating non-constant variance in residuals, while Lilliefors (Kolmogorov–Smirnov) tests consistently rejected normality—both globally and within each genre. These violations suggest caution in interpreting p-values and support the consideration of robust or non-parametric models in future work.  
 
-**IMDb Ratings vs. Release Year
+**IMDb Ratings vs. Release Year**
 ```{r, echo=FALSE, fig.align='center', out.width='80%'}
 knitr::include_graphics(here::here("data", "imdb_ratings_vs_release_year.pdf"))
 ```
@@ -118,7 +96,7 @@ The increased accessibility of films has contributed to a broader and more engag
 Since 2020, IMDb ratings have surged across various film categories, with potential contributing factors including the nostalgia effect, where older films are reassessed more positively, as well as the role of streaming platforms in making films more accessible and widely reviewed. Additionally, social media influence has played a role in shaping audience perception and generating hype around certain films.  
 Overall, the analysis suggests that newer movies tend to receive higher IMDb ratings, but this trend may be influenced by changes in audience behavior, nostalgia bias, and streaming accessibility. Future research could explore whether this pattern continues or stabilizes as more films are added to the IMDb database.
 
-# **Trend of IMDb Ratings Over Time**
+**Trend of IMDb Ratings Over Time**
 
 ```{r, echo=FALSE, fig.align='center', out.width='80%'}
 knitr::include_graphics(here::here("data", "plot_nostalgic_bias.pdf"))
@@ -144,6 +122,6 @@ These findings have practical implications for film studios, streaming platforms
 Ultimately, IMDb ratings should not be interpreted solely as indicators of film quality but as reflections of cultural memory, emotional attachment, and the evolving ways in which audiences engage with movies across decades.  
 
 ## References
-•⁠  ⁠Tetik, T., & Türkeli, Ö. (2023). POPULAR CINEMA AS NOSTALGIA INDUSTRY: REUNIONS, REMAKES, AND REQUELS. Sinecine: Sinema Araştırmaları Dergisi, 14(1), 7-31. https://doi.org/10.32001/sinecine.1253910 
-•⁠  ⁠Ulker-Demirel, E., Akyol, A. and Simsek, G.G. (2018), "Marketing gitand consumption of art products: the movie industry", Arts and the Market, Vol. 8 No. 1, pp. 80-98. https://doi.org/10.1108/AAM-06-2017-0011 
+•⁠  ⁠Tetik, T., & Türkeli, Ö. (2023). POPULAR CINEMA AS NOSTALGIA INDUSTRY: REUNIONS, REMAKES, AND REQUELS. Sinecine: Sinema Araştırmaları Dergisi, 14(1), 7-31. https://doi.org/10.32001/sinecine.1253910  
+•⁠  ⁠Ulker-Demirel, E., Akyol, A. and Simsek, G.G. (2018), "Marketing gitand consumption of art products: the movie industry", Arts and the Market, Vol. 8 No. 1, pp. 80-98. https://doi.org/10.1108/AAM-06-2017-0011  
 •⁠  ⁠Andrade, S. (2023). The impact of nostalgia and social setting on consumer motivation to watch a movie at the cinema vs. through streaming. Handle.net. http://hdl.handle.net/10400.14/42261

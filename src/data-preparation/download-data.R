@@ -17,10 +17,12 @@ if (!require("knitr")) install.packages("knitr", dependencies = TRUE)
 # Ensure "data" folder exists
 dir.create(here("data"), showWarnings = FALSE)
 
+# Input: setup and download IMDb datasets
 # Download IMDb datasets
 download.file("https://datasets.imdbws.com/title.basics.tsv.gz", 
               destfile = here("data", "title_basics.tsv.gz"))
 download.file("https://datasets.imdbws.com/title.ratings.tsv.gz", 
               destfile = here("data", "title_ratings.tsv.gz"))
 
+# OUTPUT: confirmation message
 cat("All datasets successfully downloaded to the data folder.\n")
