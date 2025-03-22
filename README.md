@@ -101,17 +101,20 @@ makefile – Automates the execution of scripts in the correct order for downloa
 
 To ensure smooth execution of this R project, confirm that you have installed the following packages. If any are missing, you can obtain them by running install.packages("packageName"). After installation, make them available in your current session by invoking the library() function.
 
-library (data.table) 
-library (R.utils)
-library (tidyverse)
-library (lubridate)
-library(readr)
-library(here)
-library(nortest)
-library(ggplot2)
-library(rmarkdown)
-library(tinytex)
-library(knitr)
+| Install Packages |
+|------------------|
+| `data.table`     |
+| `R.utils`        |
+| `tidyverse`      |
+| `lubridate`      |
+| `readr`          |
+| `here`           |
+| `nortest`        |
+| `ggplot2`        |
+| `rmarkdown`      |
+| `tinytex`        |
+| `knitr`          |
+
 
 ## Running Instructions 
 
@@ -125,7 +128,7 @@ To execute the analysis, follow these steps:
    ```sh
    cd Nostalgia-Effect-IMDB-Analysis
    ```
-4. Install Pandoc (required for document conversion and report generation) following instructions at: https://www.pandoc.org/installing.html
+4. Install Pandoc (required for document conversion and report generation) following instructions at:https://tilburgsciencehub.com/topics/computer-setup/software-installation/document-creation/pandoc/
 5. Execute the following command to automate the data processing pipeline:
    ```sh
    make
